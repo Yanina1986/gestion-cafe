@@ -1,68 +1,55 @@
-/*import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class UsuarioService {
-
-  constructor() { }
-}
-*/
 import { Injectable } from '@angular/core';
-import { Usuario } from '../modelos/usuario';
+import { Usuario } from '../Clases/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private listaUsuarios: Usuario[] = [];
+  private _usuarios: Array<Usuario>;
 
   constructor() {
-    this.cargarDesdeLocalStorage();
+    const datos = localStorage.getItem("usuarios");
+    this._usuarios = datos ? JSON.parse(datos) : [];
   }
 
+  public get usuarios(): Array<Usuario> {
+    return this._usuarios;
+  }
   obtenerUsuarios(): Usuario[] {
-    return [...this.listaUsuarios];
-  }
+  return this._usuarios;
+}
 
-  obtenerUsuarioPorId(id: number): Usuario | undefined {
-    return this.listaUsuarios.find(usuario => usuario.id === id);
-  }
 
   agregarUsuario(usuario: Usuario): void {
     usuario.id = this.generarId();
-    this.listaUsuarios.push(usuario);
+    this._usuarios.push(usuario);
     this.guardarEnLocalStorage();
   }
 
   actualizarUsuario(usuario: Usuario): void {
-    const index = this.listaUsuarios.findIndex(u => u.id === usuario.id);
+    const index = this._usuarios.findIndex(u => u.id === usuario.id);
     if (index !== -1) {
-      this.listaUsuarios[index] = usuario;
+      this._usuarios[index] = usuario;
       this.guardarEnLocalStorage();
     }
   }
 
   eliminarUsuario(id: number): void {
-    this.listaUsuarios = this.listaUsuarios.filter(usuario => usuario.id !== id);
+    this._usuarios = this._usuarios.filter(usuario => usuario.id !== id);
     this.guardarEnLocalStorage();
   }
 
+  obtenerUsuarioPorId(id: number): Usuario | undefined {
+    return this._usuarios.find(usuario => usuario.id === id);
+  }
+
   private generarId(): number {
-    return this.listaUsuarios.length > 0
-      ? Math.max(...this.listaUsuarios.map(usuario => usuario.id)) + 1
+    return this._usuarios.length > 0
+      ? Math.max(...this._usuarios.map(u => Number(u.id))) + 1
       : 1;
   }
 
   private guardarEnLocalStorage(): void {
-    localStorage.setItem('usuarios', JSON.stringify(this.listaUsuarios));
-  }
-
-  private cargarDesdeLocalStorage(): void {
-    const datos = localStorage.getItem('usuarios');
-    if (datos) {
-      this.listaUsuarios = JSON.parse(datos);
-    }
+    localStorage.setItem('usuarios', JSON.stringify(this._usuarios));
   }
 }
-

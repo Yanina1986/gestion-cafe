@@ -1,0 +1,6 @@
+<div *ngIf="this.usuario.length>0">
+</div *ngFor="let prod of this.usuarios;let i=index;let odd=odd;let even= even;">
+<app-formulario-usuario [miUsuario]="prod" [indice]="i"[odd]="odd"
+(edita)="editar($event)"></app-formulario-usuario>
+</div>
+</div>

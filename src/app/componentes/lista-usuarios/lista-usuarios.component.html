@@ -1,0 +1,27 @@
+<p>lista-usuarios works!</p>
+
+<h2>Lista de Usuarios</h2>
+<button (click)="agregarUsuario()">Agregar Usuario</button>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let usuario of usuarios">
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>
+                <button (click)="editarUsuario(usuario.id)">Editar</button>
+                <button (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

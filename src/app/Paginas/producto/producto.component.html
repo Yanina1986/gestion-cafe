@@ -1,1 +1,40 @@
+{{this.miProducto._id}}
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>nombre</mat-label>
+        <input type="text" name="nombre" matInput placeholder="nombre del producto"
+            [(ngModel)]="this.miProducto._nombre">
+    </mat-form-field>
+    <i *ngIf="(this.miProducto._nombre??'') == '' then esVerdadrero;else estructuraSINO">Ingrese valor </i>
+    <mat-form-field class="example-full-width">
+        <mat-label>moneda</mat-label>
+        <input type="text" matInput name="moneda" placeholder="moneda del producto"
+            [(ngModel)]="this.miProducto._moneda">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>precio</mat-label>
+        <input type="number" matInput name="precio" (keypress)="log($event)" placeholder="precio del producto"
+            [(ngModel)]="this.miProducto._precio">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>tipoProducto</mat-label>
+        <input type="text" matInput name="tipoProducto" placeholder="tipoProducto del producto"
+            [(ngModel)]="this.miProducto._tipoProducto">
+    </mat-form-field>
+    <div *ngIf="this.miProducto._nombre??'' != ''">
+        <input type="button" value="Limpiar" (click)="limpiar()">
+        <input type="button" value="Guardar" (click)="guardar()">
+    </div>
+</form>
+
+<ng-template #estructuraSINO>
+    <label>
+        muchas gracias
+    </label>
+</ng-template>
+
+<ng-template #esVerdadrero>
+    <b>Ingresar valor!!!</b>
+</ng-template>
 <p>producto works!</p>
+

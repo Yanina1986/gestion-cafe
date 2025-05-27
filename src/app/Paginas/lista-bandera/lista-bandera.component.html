@@ -1,0 +1,10 @@
+<p>lista-bandera works!</p>
+<p>Lista de Banderas</p>
+<div class="row">
+    <input type="text">
+</div>
+<div class="row">
+    <div class="col-md-1" *ngFor=" let bandera of this.lista.banderas | filtroBandera : ">
+        <app-bandera [pais]=""></app-bandera>
+    </div>
+</div>

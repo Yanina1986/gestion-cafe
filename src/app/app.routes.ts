@@ -4,7 +4,7 @@ import { ListaProductoComponent } from './Paginas/lista-producto/lista-producto.
 import { Usuario } from './Clases/usuario';
 import { ListaUsuariosComponent } from './Paginas/lista-usuarios/lista-usuarios.component';
 import { FormularioUsuarioComponent } from './componentes/formulario-usuario/formulario-usuario.component';
-
+import { ListaBanderaComponent } from './Paginas/lista-bandera/lista-bandera.component';
 
 export const routes: Routes = [
     {path:'', component:ProductoComponent,},
@@ -13,7 +13,8 @@ export const routes: Routes = [
     {path: 'listaProducto', component: ListaProductoComponent},
     {path: 'usuarios', component: ListaUsuariosComponent },
     {path: 'usuarios/agregar', component: FormularioUsuarioComponent },
-    {path: 'usuarios/editar/:id', component: FormularioUsuarioComponent }
+    {path: 'usuarios/editar/:id', component: FormularioUsuarioComponent },
+    {path: 'bandera', component:ListaBanderaComponent}
 
 
 ];

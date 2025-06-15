@@ -1,7 +1,7 @@
 export class Usuario {
     
-    public _id !: string;
-    public get id(): string {
+    public _id !: number;
+    public get id(): number{
         return this._id;
     }
 

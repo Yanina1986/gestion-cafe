@@ -36,11 +36,13 @@ export class UsuarioService {
 
   eliminarUsuario(id: number): void {
     this._usuarios = this._usuarios.filter(usuario => usuario.id !== id);
-    this.guardarEnLocalStorage();
+
+    //this.guardarEnLocalStorage();
   }
 
-  obtenerUsuarioPorId(id: number): Usuario | undefined {
-    return this._usuarios.find(usuario => usuario.id === id);
+  obtenerUsuarioPorId(id: number){
+    return this._usuarios.find(usuario => usuario.id ===id);
+
   }
 
   private generarId(): number {

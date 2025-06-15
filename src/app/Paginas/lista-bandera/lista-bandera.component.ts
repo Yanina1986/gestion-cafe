@@ -9,7 +9,5 @@ import { BanderasService } from '../../servicios/banderas.service';
 })
 export class ListaBanderaComponent {
 
-  constructor (public lista: BanderasService){
-    public filtro: string ="";
-  }
+  
 }

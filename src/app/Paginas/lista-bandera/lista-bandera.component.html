@@ -4,7 +4,7 @@
     <input type="text">
 </div>
 <div class="row">
-    <div class="col-md-1" *ngFor=" let bandera of this.lista.banderas | filtroBandera : ">
+    <div class="col-md-1" *ngFor="let bandera of lista.banderas | filtroBandera: filtro">
         <app-bandera [pais]=""></app-bandera>
     </div>
 </div>

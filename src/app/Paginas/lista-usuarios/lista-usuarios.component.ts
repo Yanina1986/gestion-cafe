@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+/*import { Component , OnInit} from '@angular/core';
 import { Usuario } from '../../Clases/usuario';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
@@ -37,5 +37,5 @@ export class ListaUsuariosComponent{
   agregarUsuario(): void {
     this.router.navigate(['/usuarios/agregar']);
   }
-}
+}*/
 

@@ -7,7 +7,7 @@ import { Bandera } from '../Clases/bandera';
 })
 export class BanderasService {
   
-  public banderas: Array<Bandera>=[];
+ /* public banderas: Array<Bandera>=[];
   constructor(public http: HttpClient) { 
     http.get ('https://restcountries.com/v3.1/all').subscribe({
       next:(data)=> {,
@@ -17,5 +17,5 @@ export class BanderasService {
       },
       error : (error) =>{console.log (error); alert (error)}
     });
-  }
+  }*/
 }

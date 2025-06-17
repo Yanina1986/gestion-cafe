@@ -20,11 +20,11 @@ export class UsuarioService {
 }
 
 
-  agregarUsuario(usuario: Usuario): void {
-    usuario.id = this.generarId();
-    this._usuarios.push(usuario);
-    this.guardarEnLocalStorage();
-  }
+ // agregarUsuario(usuario: Usuario): void {
+   // usuario.id = this.generarId();
+   // this._usuarios.push(usuario);
+   // this.guardarEnLocalStorage();
+ // }
 
   actualizarUsuario(usuario: Usuario): void {
     const index = this._usuarios.findIndex(u => u.id === usuario.id);

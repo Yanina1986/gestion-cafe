@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class FormularioUsuarioComponent {
 
-  @input('miUsuario')
+ /* @input('miUsuario')
   public miUsuario: Usuario = new Usuario();
 
   @input ('indice')
@@ -26,8 +26,7 @@ export class FormularioUsuarioComponent {
   public odd: boolean = false; 
 
   
-  @Output() edita = new EventEmitter<number>();
-  
+  @Output() edita = new EventEmitter<number>();*/
   
 }
 

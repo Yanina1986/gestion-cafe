@@ -5,7 +5,7 @@ import { Usuario } from './Clases/usuario';
 //import { ListaUsuariosComponent } from './Paginas/lista-usuarios/lista-usuarios.component';
 import { FormularioUsuarioComponent } from './componentes/formulario-usuario/formulario-usuario.component';
 //import { ListaBanderaComponent } from './Paginas/lista-bandera/lista-bandera.component';
-
+import { FormBuilder,FormGroup,Validators } from "@angular/forms";
 
 export const routes: Routes = [
     {path:'', component:ProductoComponent,},

@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup,Validator } from '@angular/forms';
 import { ProductoService } from '../../servicios/producto.service'; 
 import { Producto } from '../../Clases/producto';
 import { OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-lista-producto',

@@ -31,9 +31,14 @@ export class ProductoComponent implements OnInit{
       imagen: ['']
       });
   }
-  guardar(): void{
-    console.log(this.formularioProducto.value);
-  }
+  
+    guardar(): void {
+      if (this.formularioProducto.valid) {
+        console.log('Formulario válido:', this.formularioProducto.value);
+      } else {
+        console.log('Formulario inválido');
+      }
+    }
 }
 
   /*public miProducto!: Producto;

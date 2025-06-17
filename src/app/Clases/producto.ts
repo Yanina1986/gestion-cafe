@@ -32,11 +32,11 @@ export class Producto {
         this._id = v;
     }
 
-    public _tipoProducto !: string;
-    public get tipoProducto(): string {
-        return this._tipoProducto;
+    public _categoria !: string;
+    public get categoria(): string {
+        return this._categoria;
     }
-    public set tipoProducto(v: string) {
-        this._tipoProducto = v;
+    public set categoria(v: string) {
+        this._categoria = v;
     }
 }

@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validator } from '@angular/forms';
-import { ProductoService } from '../../servicios/producto.service'; 
-import { Producto } from '../../Clases/producto';
-import { OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ProductoService, Producto } from '../servicios/producto.service';
+
+
 
 
 
@@ -26,7 +25,7 @@ export class ListaProductoComponent {
   }  
   eliminar(id:number):void{
     this.productoService.eliminar(id).subscribe(()=>{
-     this.productos = this.productos.filter(p => p._id !== id);
+     this.productos = this.productos.filter(p => p.id !== id);
     });
   }
 }

@@ -2,17 +2,13 @@ import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validator } from '@angular/forms';
 import { ProductoService, Producto } from '../servicios/producto.service';
 
-
-
-
-
 @Component({
   selector: 'app-lista-producto',
   imports: [],
-  templateUrl: './lista-producto.component.html',
+  templateUrl:'./lista-producto.component.html',
   styleUrl: './lista-producto.component.css'
 })
-export class ListaProductoComponent {
+export class ListaProductoComponent implements OnInit{
   productos: Producto [] =[];
 
   constructor (private productoService : ProductoService){}
@@ -29,28 +25,3 @@ export class ListaProductoComponent {
     });
   }
 }
-
-
-
-
-/*
-import { MatListModule } from '@angular/material/list';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
-import { ProductoDetalleComponent } from "../producto-detalle/producto-detalle.component";
- 
-
-
-export class ListaProductoComponent {
-  public productos: Array<Producto>;
-
-  constructor(public route: Router, public productoService: ProductoService) {
-    this.productos = this.productoService.Producto;
-  }
-
-  public editar(id: number) {
-    this.route.navigateByUrl("producto/" + id.toString());
-  }
-}*/

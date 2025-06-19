@@ -1,5 +1,6 @@
 import { Component,OnInit } from "@angular/core";
-import { FormBuilder,FormGroup,Validators } from "@angular/forms";
+import { FormBuilder,FormGroup,Validators } from "@angular/forms"
+import { FormControl } from "@angular/forms";
 
 
 
@@ -13,11 +14,11 @@ import { FormBuilder,FormGroup,Validators } from "@angular/forms";
 
 export class ProductoComponent implements OnInit{
 
-  formularioProducto!: FormGroup;
+  formulario!: FormGroup;
 
   constructor (private fb:FormBuilder){}
   ngOnInit(): void {
-      this.formularioProducto = this.fb.group({
+      this.formulario = this.fb.group({
         nombre: ['', Validators.required],
         descripcion: [''],
         precio: [0, [Validators.required, Validators.min(1)]],
@@ -27,7 +28,7 @@ export class ProductoComponent implements OnInit{
   }
   
   guardar(): void {
-    console.log('Producto guardado:', this.formularioProducto.value);
+    console.log('Producto guardado:', this.formulario.value);
   }
  }
 

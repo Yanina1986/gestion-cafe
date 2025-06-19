@@ -1,0 +1,25 @@
+<h2>Iniciar Sesión</h2>
+
+<form [formGroup]="loginForm"(ngSubmit)="ingresar()">
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="password" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Ingresar</button>
+
+    <p *ngIf="error" style="color: red;">{{ error }}></p> 
+
+    <p>¿No tenés cuenta? <a routerLink="/registro">Registrate acá</a></p>
+</form>
+
+
+
+
+
+

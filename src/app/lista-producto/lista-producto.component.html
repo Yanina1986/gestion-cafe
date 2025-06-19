@@ -6,16 +6,17 @@
          <th>Descripción</th>
          <th>Precio (ARS)</th>
          <th>Categoría</th>
-        
-         
+         <th>Imagen</th>
+         <th>Acciones</th>
       </tr>
    </thead>
    <tbody>
       <tr *ngFor="let p of productos">
-          <td><div class="nombre"></div></td>
-          <td><div class="descripcion"></div></td>
-         
-         
+         <td>{{ p.nombre }}</td>
+         <td>{{ p.descripcion }}</td>
+         <td>{{ p.precio_ars }}</td>
+         <td>{{ p.categoria }}</td>
+         <td><img [src]="p.imagen" width="50" /></td>
          <td>
             <button (click)="eliminar(p.id!)">Eliminar</button>
          </td>

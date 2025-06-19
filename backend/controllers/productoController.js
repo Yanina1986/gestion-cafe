@@ -7,20 +7,18 @@ exports.listar = (req, res) => {
     });
 };
 
-exports.agregar = (req,res) => {
-    const {nombre,descripcion,precio_ars, categoria, imagen
-
-    }= register.body;
-    db.query( 'INSERT INTO productos(nombre, descripcion,precio_ars, categoria, imagen) VALUES(?,?,?,?,?,?)', 
-        [nombre,descripcion,precio_ars, categoria,imagen],
-        (err,result)=>{
-            if (err)return res.status(500).send (err);
-            res.json({id:result.insertId,message:  'Producto Agregado '});
-        }
-
+exports.agregar = (req, res) => {
+    const { nombre, descripcion, precio_ars, categoria, imagen } = req.body;
+    db.query(
+      'INSERT INTO productos (nombre, descripcion, precio_ars, categoria, imagen) VALUES (?, ?, ?, ?, ?)',
+      [nombre, descripcion, precio_ars, categoria, imagen],
+      (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.json({ id: result.insertId, message: 'Producto agregado' });
+      }
     );
-};
-
+  };
+  
 exports.editar = (req,res) => {
     const {id }= req.params;
     const {nombre,descripcion, precio_ars,categoria, imagen} = req.body;

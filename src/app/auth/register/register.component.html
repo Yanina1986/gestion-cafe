@@ -1,1 +1,42 @@
-<p>register works!</p>
+<div class="card border-primary mb-4 mx-auto" style="max-width: 25rem;">
+    <div class="card-header text-center">Registrarse</div>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="registrar()">
+
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="nombre" class="form-control" id="floatingNombre"
+                    placeholder="Tu nombre">
+                <label for="floatingNombre">Nombre</label>
+                <div *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched"
+                    class="text-danger small">
+                    Nombre requerido.
+                </div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" formControlName="email" class="form-control" id="floatingEmail"
+                    placeholder="name@example.com">
+                <label for="floatingEmail">Email</label>
+                <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                    class="text-danger small">
+                    Email inválido o requerido.
+                </div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="password" formControlName="password" class="form-control" id="floatingPassword"
+                    placeholder="Contraseña" autocomplete="off">
+                <label for="floatingPassword">Contraseña</label>
+                <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                    class="text-danger small">
+                    Contraseña requerida (mínimo 6 caracteres).
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Registrarse</button>
+
+            <p *ngIf="error" class="text-danger mt-3 text-center">{{ error }}</p>
+        </form>
+    </div>
+</div>
+  

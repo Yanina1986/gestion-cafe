@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-formulario',
-  standalone: true,
+
   imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'

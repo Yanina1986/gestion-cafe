@@ -21,8 +21,9 @@ export class ProductoComponent implements OnInit{
       this.formulario = this.fb.group({
         nombre: ['', Validators.required],
         descripcion: [''],
-        precio: [0, [Validators.required, Validators.min(1)]],
+        precio_arg: [0, [Validators.required, Validators.min(1)]],
         categoria: ['', Validators.required],
+        imagen: ['', Validators.required],
        
       });
   }

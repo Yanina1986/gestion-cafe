@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { Producto } from '../../Clases/producto';
+import { Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-producto-detalle',
@@ -15,24 +16,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class ProductoDetalleComponent {
 
-  @Input('miAtributo')
-  public miProducto: Producto = new Producto();
+  form : FormGroup;
 
-  @Input('indice')
-  public i: number = 0;
-
-  @Input()
-  public odd: boolean = false;
-
-  @Output() edita = new EventEmitter<number>();
-
-  public get even(): boolean {
-    return !this.odd;
+  constructor (private fb: FormBuilder){
+    this.form = this.fb.group({
+      nombre: ['', Validators.required],
+        descripcion: [''],
+        precio_arg: [0, [Validators.required, Validators.min(1)]],
+        categoria: ['', Validators.required],
+        imagen: ['', Validators.required],
+       
+    })
   }
-
-  public editar() {
-    this.edita.emit(this.miProducto._id);
+  ngOninit(): void{
 
   }
-
+  addProducto(){
+   console.log('Add producto');
+  }
 }

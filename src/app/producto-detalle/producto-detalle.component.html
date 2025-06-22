@@ -1,9 +1,26 @@
-<mat-card appearance="outlined" [ngClass]="{fondo:even,color:i<4,fondo2:odd,color2:i>3}">
-    <mat-card-content>{{this.miProducto._nombre}} - {{this.miProducto._precio}} - {{this.miProducto._moneda}}
-        <div class="example-button-container ">
-            <button mat-fab aria-label="Example icon button with a delete icon" (click)="editar()">
-                <mat-icon>edit</mat-icon>
-            </button>
+<div class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header text center">Agregar producto</div>
+            <div class="card-body">
+                <form action="">
+                    <input type="text" class="form-control" placeholder="Nombre">
+                    <input type="text" class="form-control mt-2" placeholder="Descripcion">
+                    <input type="text" class="form-control mt-2" placeholder="Precio">
+                    <input type="text" class="form-control mt-2" placeholder="Categoria">
+                    <input type="text" class="form-control mt-2" placeholder="Imagen">
+                    <div class="row mt-2 text-center">
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-primary">Aceptar</button>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-secondary">Volver</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
         </div>
-    </mat-card-content>
-</mat-card>
+    </div>
+</div>

@@ -1,41 +1,57 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Producto } from '../Clases/producto';
 
-
-export interface Producto {
-  id?: number;
-  nombre: string;
-  descripcion: string;
-  precio_ars: number;
-  categoria: string;
-  imagen: string;
-}
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
+  private _productos : Array<Producto> =[]; 
+  private isBrowser: boolean;
+  constructor() {
+    this.isBrowser = typeof window !== 'undefined' && !!window.localStorage;
+    if (this.isBrowser) {
+    this._productos = JSON.parse(localStorage.getItem("productos") ?? '[]');
+    }
+  }
+
+  public get Producto(): Array<Producto> {
+    return this._productos;
+  }
+
+  public getProductos(): void {
+    this._productos = JSON.parse(localStorage.getItem("productos") ?? '[]')
+  }
+
+  saveProducto(producto: Producto): void {
+    const productos: Producto[] = JSON.parse(localStorage.getItem('productos') || '[]');
   
-  private apiUrl = 'http://localhost:3000/api/productos';
-
-  constructor (private http: HttpClient) {}
-
-  listar(): Observable <Producto[]> {
-    
-    return this.http.get<Producto[]>(this.apiUrl);
-
-  }
-
-  agregar(producto: Producto): Observable <any> {
-    return this.http.post<Producto[]>(this.apiUrl,producto);
-  }
-
-  editar (id: number, producto: Producto): Observable <any>{
-  return this.http.put(`${this.apiUrl}/${id}`, producto);
-}
-
-eliminar(id: number): Observable<any> {
- return this.http.delete(`${this.apiUrl}/${id}`);
-}
    
+    producto.id = productos.length > 0 ? productos[productos.length - 1].id + 1 : 1;
+  
+    productos.push(producto);
+  
+    localStorage.setItem('productos', JSON.stringify(productos));
+  }
+  
+  actualizarProducto(producto: Producto) {
+    const productos = this.obtenerProductos().map(p =>
+      p.id === producto.id ? producto : p
+    );
+    localStorage.setItem('productos', JSON.stringify(productos));
+  }
+  
+  eliminarProducto(id: number) {
+    const productos = this.obtenerProductos().filter(p => p.id !== id);
+    localStorage.setItem('productos', JSON.stringify(productos));
+  }
+  
+  obtenerProductos(): Producto[] {
+    return JSON.parse(localStorage.getItem('productos') || '[]');
+  }
+  
+  
+  
 }
+
+   

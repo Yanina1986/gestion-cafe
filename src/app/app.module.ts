@@ -2,22 +2,26 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms"; 
 import { AppComponent } from "./app.component";
-import { FormularioReactivoComponent } from "./components/formulario-reactivo/formulario-reactivo.component"; 
+
 import { HttpClientModule } from "@angular/common/http";
 import { ProductoComponent } from "./producto/producto.component";
 import { ReactiveFormsModule } from "@angular/forms";
-
+import { ListaProductoComponent} from "./lista-producto/lista-producto.component";
+import { FiltroProductoPipe } from "./pipes/filtro-producto.pipe";
 @NgModule({
   declarations: [
     AppComponent,
     ProductoComponent,
-    FormularioReactivoComponent,
+    
+    ListaProductoComponent,
+    FiltroProductoPipe,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+  
   
   ],
   bootstrap: [AppComponent]

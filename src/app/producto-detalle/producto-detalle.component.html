@@ -1,26 +1,36 @@
-<div class="row mt-1">
-    <div class="col-lg-4 offset-lg-4">
-        <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
-            <div class="card-header text center">Agregar producto</div>
-            <div class="card-body">
-                <form action="">
-                    <input type="text" class="form-control" placeholder="Nombre">
-                    <input type="text" class="form-control mt-2" placeholder="Descripcion">
-                    <input type="text" class="form-control mt-2" placeholder="Precio">
-                    <input type="text" class="form-control mt-2" placeholder="Categoria">
-                    <input type="text" class="form-control mt-2" placeholder="Imagen">
-                    <div class="row mt-2 text-center">
-                        <div class="col-lg-6">
-                            <button type="button" class="btn btn-primary">Aceptar</button>
-                        </div>
 
-                        <div class="col-lg-6">
-                            <button type="button" class="btn btn-secondary">Volver</button>
-                        </div>
-                    </div>
+<div class="container mt-4">
+    <h4>{{ esNuevo ? 'Agregar Producto' : 'Editar Producto' }}</h4>
 
-                </form>
-            </div>
+    <form (ngSubmit)="guardar()">
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input class="form-control" type="text" [(ngModel)]="miProducto.nombre" name="nombre" required />
         </div>
-    </div>
+
+        <div class="mb-3">
+            <label>Descripción</label>
+            <input class="form-control" type="text" [(ngModel)]="miProducto.descripcion" name="descripcion" />
+        </div>
+
+        <div class="mb-3">
+            <label>Precio (ARS)</label>
+            <input class="form-control" type="number" [(ngModel)]="miProducto._precio_ars" name="precio_ars" required />
+        </div>
+
+        <div class="mb-3">
+            <label>Categoría</label>
+            <input class="form-control" type="text" [(ngModel)]="miProducto.categoria" name="categoria" />
+        </div>
+
+        <div class="mb-3">
+            <label>URL de Imagen</label>
+            <input class="form-control" type="text" [(ngModel)]="miProducto.imagen" name="imagen" />
+        </div>
+
+        <button class="btn btn-success" type="submit">
+            {{ esNuevo ? 'Agregar' : 'Actualizar' }}
+        </button>
+    </form>
 </div>
+  

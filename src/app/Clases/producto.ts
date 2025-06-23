@@ -22,15 +22,13 @@ export class Producto {
         this._descripcion = v;
     }
 
-    private _precio_arg!: number;
-
-   public get precio_arg(): number {
-  return this._precio_arg;
-   }
-
-   public set precio_arg(value: number) {
-   this._precio_arg = value;
-   }  
+    public _precio_arg !: number;
+    public get precio_arg(): number{
+        return this._precio_arg;
+    }
+    public set precio_arg(v: number) {
+        this._precio_arg = v;
+    }
 
     public _categoria !: string;
     public get categoria(): string{

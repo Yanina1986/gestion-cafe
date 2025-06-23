@@ -11,9 +11,10 @@ import { ProductoService } from '../servicios/producto.service';
 import { Producto } from '../Clases/producto';
 
 
+
 @Component({
   selector: 'app-producto-detalle',
-  imports: [ReactiveFormsModule,FormsModule,MatIconModule],
+  imports: [FormsModule, CommonModule,MatInputModule,MatCardModule, MatIconModule,MatCardModule,MatIconModule],
   templateUrl: './producto-detalle.component.html',
   styleUrl: './producto-detalle.component.css'
 })

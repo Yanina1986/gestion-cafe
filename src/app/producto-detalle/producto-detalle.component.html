@@ -1,36 +1,11 @@
 
-<div class="container mt-4">
-    <h4>{{ esNuevo ? 'Agregar Producto' : 'Editar Producto' }}</h4>
+<mat-card appearance="outlined" [ngClass]="{fondo:even,color:i<4,fondo2:odd,color2:i>3}">
+    <mat-card-content>{{this.miProducto.nombre}} - {{this.miProducto._descripcion}}-{{this.miProducto.precio_arg}}-{{this.miProducto._imagen}}
+        <div class="example-button-container ">
+            <button mat-fab aria-label="Example icon button with a delete icon" (click)="editar()">
+                <mat-icon>edit</mat-icon>
 
-    <form (ngSubmit)="guardar()">
-        <div class="mb-3">
-            <label>Nombre</label>
-            <input class="form-control" type="text" [(ngModel)]="miProducto.nombre" name="nombre" required />
+            </button>
         </div>
-
-        <div class="mb-3">
-            <label>Descripción</label>
-            <input class="form-control" type="text" [(ngModel)]="miProducto.descripcion" name="descripcion" />
-        </div>
-
-        <div class="mb-3">
-            <label>Precio (ARS)</label>
-            <input class="form-control" type="number" [(ngModel)]="miProducto._precio_ars" name="precio_ars" required />
-        </div>
-
-        <div class="mb-3">
-            <label>Categoría</label>
-            <input class="form-control" type="text" [(ngModel)]="miProducto.categoria" name="categoria" />
-        </div>
-
-        <div class="mb-3">
-            <label>URL de Imagen</label>
-            <input class="form-control" type="text" [(ngModel)]="miProducto.imagen" name="imagen" />
-        </div>
-
-        <button class="btn btn-success" type="submit">
-            {{ esNuevo ? 'Agregar' : 'Actualizar' }}
-        </button>
-    </form>
-</div>
-  
+    </mat-card-content>
+</mat-card>

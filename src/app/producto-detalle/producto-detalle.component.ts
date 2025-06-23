@@ -10,51 +10,33 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from '../servicios/producto.service';
 import { Producto } from '../Clases/producto';
 
+
 @Component({
   selector: 'app-producto-detalle',
-  imports: [ReactiveFormsModule,FormsModule],
+  imports: [ReactiveFormsModule,FormsModule,MatIconModule],
   templateUrl: './producto-detalle.component.html',
   styleUrl: './producto-detalle.component.css'
 })
 export class ProductoDetalleComponent {
 
   
-  public miProducto!: Producto;
-  esNuevo: boolean = false;
+  @Input('miAtributo')
+  public miProducto: Producto = new Producto();
 
-  constructor(public activeRoute: ActivatedRoute, public productoService: ProductoService) {
+  @Input('indice')
+  public i: number = 0;
 
-    this.activeRoute.paramMap.subscribe(
-      param => {
-        let idParametro = param.get("idProducto") ?? "";
-        if (idParametro == "")
-          this.miProducto = new Producto();
-        else {
-          this.miProducto = this.productoService.Producto.filter(prod => prod._id.toString() == idParametro)[0] ?? new Producto();
-        }
-      }
-    );
+  @Input()
+  public odd: boolean = false;
+
+  @Output() edita = new EventEmitter<number>();
+
+  public get even(): boolean {
+    return !this.odd;
   }
 
-  public log(argumento: any) {
-    console.info(argumento);
-  }
-
-  public guardar() {
-    let productos: Array<Producto> = this.productoService.Producto;
-    if (this.miProducto._id) {
-      let anterior = productos.filter(prod => prod._id == this.miProducto._id)[0];
-      anterior._nombre = this.miProducto._nombre;
-      
-    } else {
-      this.miProducto.id = productos.length + 1;
-      productos.push(this.miProducto);
+  public editar() {
+    this.edita.emit(this.miProducto._id);
     }
-    this.productoService.saveProducto(productos);
-  }
-
-  public limpiar() {
-    this.miProducto = new Producto();
-  }
   
 }

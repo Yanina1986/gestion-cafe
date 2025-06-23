@@ -8,7 +8,7 @@ import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.co
 
 export const routes: Routes = [
     {
-        path:'',component:ProductoComponent
+        path:'',component:ListaProductoComponent
      },
    /*{
       path:'producto/id',component:ProductoDetalleComponent

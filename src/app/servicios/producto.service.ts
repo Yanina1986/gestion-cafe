@@ -23,15 +23,9 @@ export class ProductoService {
     this._productos = JSON.parse(localStorage.getItem("productos") ?? '[]')
   }
 
-  saveProducto(producto: Producto): void {
-    const productos: Producto[] = JSON.parse(localStorage.getItem('productos') || '[]');
-  
-   
-    producto.id = productos.length > 0 ? productos[productos.length - 1].id + 1 : 1;
-  
-    productos.push(producto);
-  
+  public saveProducto(productos: Array<Producto>) {
     localStorage.setItem('productos', JSON.stringify(productos));
+    this.getProductos();
   }
   
   actualizarProducto(producto: Producto) {

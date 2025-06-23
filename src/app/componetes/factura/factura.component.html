@@ -1,0 +1,38 @@
+<p>factura works!</p>
+p> Fecha</p> <input type="datetime">
+<p> numero</p> <input type="text">
+<div *ngFor="let i of this.cantidad ">
+    {{i}}
+    <app-detalle-factura></app-detalle-factura>
+</div>
+<input type="button" value="agregar" (click)="agregar()">
+<input type="button" value="quitar" (click)="this.cantidad.pop() ">
+
+
+<p>factura works!</p>
+<div *ngIf="this.muestra">
+    <p>acá muestro algo</p>
+</div>
+{{this.muestra}}
+
+<div *ngIf="this.muestra; then estructuraIf;else estructuraElse">
+</div>
+
+
+<div *ngIf="this.muestra;else estructuraElse">
+    <p>acá muestro con el if</p>
+</div>
+
+
+<input type="button" (click)="aceptar()" value="cambiar">
+
+<ng-template #estructuraElse>
+    <p> soy estructuraElse</p>
+    <app-login></app-login>
+
+</ng-template>
+<ng-template #estructuraIf>
+    <p> soy estructuraIf</p>
+</ng-template>
+<p>factura works!</p>
+

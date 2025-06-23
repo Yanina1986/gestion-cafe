@@ -1,3 +1,15 @@
-p {
-    color: red;
-    text-align: center;} 
+/* Aplica fondo blanco a todos los campos Material de tipo "fill" */
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #fff !important;
+}
+
+/* Aplica texto negro dentro de los inputs */
+input.mat-input-element,
+textarea.mat-input-element {
+    color: #000 !important;
+}
+
+/* Mejora contraste de los placeholders */
+.mat-form-field-label {
+    color: #555 !important;
+}

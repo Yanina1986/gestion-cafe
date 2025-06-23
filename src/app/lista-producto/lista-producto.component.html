@@ -16,11 +16,12 @@
          </tr>
       </thead>
       <tbody>
-         <tr *ngFor="let producto of productos" class="table-active">
+         <tr *ngFor="let producto of productos; let i=index" class="table-active">
             <td>{{ producto._nombre }}</td>
             <td>{{ producto._descripcion }}</td>
             <td>{{ producto._precio_arg }}</td>
             <td>{{ producto._categoria }}</td>
+            <td>{{producto._imagen}}</td>
             <td>
                <img [src]="producto._imagen" alt="Imagen" width="50" *ngIf="producto._imagen">
             </td>

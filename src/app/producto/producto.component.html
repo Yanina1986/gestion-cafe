@@ -1,22 +1,29 @@
 <div class="row mt-1">
     <div class="col-lg-4 offset-lg-4">
         <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
-            <div class="card-header text center">Agregar producto</div>
+            <div class="card-header text-center">Producto</div>
             <div class="card-body">
                 <form>
-                    <input type="text" class="form-control" [(ngModel)]="this.miProducto.nombre" placeholder="Nombre">
-                    <input type="text" class="form-control mt-2" [(ngModel)]="this.miProducto.descripcion"
+                    <input type="text" matInput name="nombre" class="form-control" matInput aria-placeholder="Nombre del producto"
+                        [(ngModel)]="this.miProducto.nombre"placeholder="Nombre">
+
+                    <input type="text"  matInput name="descripción"class="form-control mt-2" [(ngModel)]="this.miProducto.descripcion"
                         placeholder="Descripcion">
-                    <input type="text" class="form-control mt-2" [(ngModel)]="this.miProducto.precio_arg"
+                    <input type="number" matInput name="precio" placeholder class="form-control mt-2" [(ngModel)]="this.miProducto.precio_arg"
                         placeholder="Precio">
-                    <input type="text" class="form-control mt-2" [(ngModel)]="this.miProducto.categoria"
+                    <input type="text" matInput name="categoria" class="form-control mt-2" [(ngModel)]="this.miProducto.categoria"
                         placeholder="Categoria">
-                    <input type="text" class="form-control mt-2" [(ngModel)]="this.miProducto.imagen"
+                    <input type="text" matInput name="categoria" class="form-control mt-2" [(ngModel)]="this.miProducto.imagen"
                         placeholder="Imagen">
+
                     <div class="row mt-2 text-center">
 
-                        <input type="button" value="Limpiar" (click)="limpiar()">
-                        <input type="button" value="Guardar" (click)="guardar()">
+                        <input type="button" class="btn btn-secondary mt-2" value="Limpiar" (click)="limpiar()">
+                        <input type="button" class="btn btn-primary" value="Guardar" (click)="guardar()">
+                        <button mat-fab aria-label="Editar producto"><mat-icon>edit</mat-icon></button>                        
+
+                
+                        
 
                     </div>
 

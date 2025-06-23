@@ -10,16 +10,17 @@ export const routes: Routes = [
     {
         path:'',component:ListaProductoComponent
      },
-   /*{
-      path:'producto/id',component:ProductoDetalleComponent
+   {
+      path:'producto/:idproducto',component:ProductoComponent
    },
+   {
+      path:'producto',component:ProductoComponent
+   }
      /*{
         path:'registrar',component:RegisterComponent
      },*/
      /*{
       path:'listado',component:ListaProductoComponent
-     },
-   {
-      path:'producto',component:ProductoComponent
-   }*/
+     },*/
+   
 ];

@@ -1,1 +1,26 @@
-<p>factura works!</p>
+<div class="container mt-4">
+    <form>
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input id="fecha" type="datetime-local" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="numero" class="form-label">Número</label>
+            <input id="numero" type="text" class="form-control">
+        </div>
+    </form>
+
+    <div class="mb-3">
+        <button class="btn btn-success me-2" (click)="agregar()">Agregar</button>
+        <button class="btn btn-danger" (click)="cantidad.pop()">Quitar</button>
+    </div>
+
+    <div *ngFor="let i of cantidad; let idx = index" class="card mb-2">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">Ítem #{{ idx + 1 }}</h6>
+            <app-detalle-factura></app-detalle-factura>
+        </div>
+    </div>
+</div>
+  

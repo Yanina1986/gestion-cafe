@@ -3,24 +3,26 @@ import { LoginComponent } from './auth/login/login.component';
 import { ListaProductoComponent } from './lista-producto/lista-producto.component';
 import { ProductoComponent } from './producto/producto.component';
 import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
+import { RegisterComponent } from './auth/register/register.component';
 //import { RegisterComponent } from './auth/register/register.component';
 
 
 export const routes: Routes = [
     {
-        path:'',component:ListaProductoComponent
+        path:'',component:LoginComponent
      },
+     {
+      path:'listaProductos',component:ListaProductoComponent
+     },
+     {
+      path:'registrar',component:RegisterComponent
+   },
    {
       path:'producto/:idproducto',component:ProductoComponent
    },
    {
       path:'producto',component:ProductoComponent
-   }
-     /*{
-        path:'registrar',component:RegisterComponent
-     },*/
-     /*{
-      path:'listado',component:ListaProductoComponent
-     },*/
+   },
+   
    
 ];

@@ -3,10 +3,12 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

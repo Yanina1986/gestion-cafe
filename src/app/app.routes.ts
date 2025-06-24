@@ -4,25 +4,17 @@ import { ListaProductoComponent } from './lista-producto/lista-producto.componen
 import { ProductoComponent } from './producto/producto.component';
 import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { FacturaComponent } from './componetes/factura/factura.component';
+import { DetalleFacturaComponent } from './componetes/detalle-factura/detalle-factura.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import { FormularioProductoComponent } from './components/formulario-producto/formulario-producto.component';
 //import { RegisterComponent } from './auth/register/register.component';
 
 
 export const routes: Routes = [
-    {
-        path:'',component:LoginComponent
-     },
-     {
-      path:'listaProductos',component:ListaProductoComponent
-     },
-     {
-      path:'registrar',component:RegisterComponent
-   },
-   {
-      path:'producto/:idproducto',component:ProductoComponent
-   },
-   {
-      path:'producto',component:ProductoComponent
-   },
+   { path: 'producto/nuevo', component: FormularioProductoComponent },
+   { path: 'producto/editar/:id', component: FormularioComponent },
+   
    
    
 ];

@@ -22,7 +22,7 @@ import { MatButtonModule } from "@angular/material/button";
 
 export class ProductoComponent {
   
-  public miProducto!: Producto;
+  /*public miProducto!: Producto;
 
   constructor(public activeRoute: ActivatedRoute, public productoService: ProductoService) {
   this.activeRoute.paramMap.subscribe(
@@ -46,7 +46,7 @@ public guardar() {
   if (this.miProducto._id) {
     let anterior = productos.filter(prod => prod._id == this.miProducto._id)[0];
     anterior._nombre = this.miProducto._nombre;
-    anterior._descripcion = this.miProducto._descripcion;
+    anterior.descripcion = this.miProducto._descripcion;
     anterior._precio_arg = this.miProducto._precio_arg;
     anterior._categoria = this.miProducto._categoria;
     anterior._imagen= this.miProducto._imagen;
@@ -59,7 +59,7 @@ public guardar() {
 
   public limpiar() {
     this.miProducto = new Producto();
-  }
+  }*/
 }
 
  

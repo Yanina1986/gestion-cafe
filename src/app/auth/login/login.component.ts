@@ -32,20 +32,24 @@ export class LoginComponent {
   }
 
   ingresar() {
-    if (!this.loginForm.valid) return;
-
+    if (this.loginForm.invalid) {
+      this.error = 'Por favor completá todos los campos correctamente.';
+      return;
+    }
+  
     const { email, password } = this.loginForm.value;
-
-    this.http.post<any>('http://localhost:3000/api/login', { email, password }).subscribe({
+  
+    this.http.post<any>('http://localhost:3000/api/auth/login', { email, password }).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/productos']);
+        this.router.navigate(['/listaProductos']);
       },
-      error: () => {
-        this.error = 'Credenciales inválidas';
+      error: (err) => {
+        this.error = 'Credenciales inválidas o servidor no disponible.';
       }
     });
   }
+  
 }
 
 

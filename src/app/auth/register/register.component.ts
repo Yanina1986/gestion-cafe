@@ -14,24 +14,34 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  error: string = '';
+error: string = '';
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
-    this.registerForm = this.fb.group({
-      nombre: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  this.registerForm = this.fb.group({
+    nombre: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+}
+
+registrar(): void {
+  if (this.registerForm.invalid) {
+    this.error = 'Por favor, completá todos los campos correctamente.';
+    return;
   }
 
-  registrar() {
-    if (this.registerForm.invalid) return;
+  this.auth.register(this.registerForm.value).subscribe({
+    next: () => {
+      alert('Registro exitoso');
+      this.router.navigate(['/listaProductos']);      
+      
+    },
+    error: () => {
+      this.error = 'Error al registrar. Intenta nuevamente.';
+    }
+  });
+}
 
-    this.auth.register(this.registerForm.value).subscribe({
-      next: () => this.router.navigate(['/login']),
-      error: () => this.error = 'Error al registrar. Intenta nuevamente.'
-    });
-  }
 }
 
 

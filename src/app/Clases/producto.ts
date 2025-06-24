@@ -15,7 +15,7 @@ export class Producto {
     }
 
     public _descripcion !: string;
-    public get descripcio(): string{
+    public get descripcion(): string{
         return this._descripcion;
     }
     public set descripcion(v: string) {

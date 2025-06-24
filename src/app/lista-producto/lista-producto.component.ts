@@ -7,25 +7,34 @@ import { ProductoDetalleComponent } from "../producto-detalle/producto-detalle.c
 import { ProductoService } from '../servicios/producto.service'; 
 import { Producto } from '../Clases/producto';
 import { MatIconModule } from '@angular/material/icon';
+import { FiltroProductoPipe } from '../pipes/filtro-producto.pipe';
 @Component({
   selector: 'app-lista-producto',
-  imports: [MatListModule, CommonModule, MatCardModule, MatIconModule, ProductoDetalleComponent],
+  imports: [MatListModule, CommonModule, MatCardModule, MatIconModule, ProductoDetalleComponent,FiltroProductoPipe],
   templateUrl: './lista-producto.component.html',
   styleUrl: './lista-producto.component.css'
 })
 export class ListaProductoComponent {
-  public productos: Array<Producto>;
+  productos: any[] = [];
+  filtro: string = '';
 
-  constructor(public route: Router, public productoService: ProductoService) {
-    this.productos = this.productoService.Producto;
-  }
-  public editar(id: number) {
-    this.route.navigateByUrl("producto/" + id.toString());
-  }
-  public eliminar(id: number){
-    this.route.navigateByUrl("producto/"+id.toString());
-  }
-    
-    
+  constructor(private productoService: ProductoService, private router: Router) {}
 
+  ngOnInit() {
+    this.productoService.obtenerProductos().subscribe(data => this.productos = data);
+  }
+
+  editar(id: number) {
+    this.router.navigate(['/producto/editar', id]);
+  }
+
+  eliminar(id: number) {
+    this.productoService.eliminarProducto(id).subscribe(() => {
+      this.productos = this.productos.filter(p => p.id !== id);
+    });
+  }
+
+  agregarProducto() {
+    this.router.navigate(['/producto/nuevo']);
+  }
 }

@@ -1,14 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ProductoService } from '../servicios/producto.service';
-import { Producto } from '../Clases/producto';
 
 @Pipe({
-  name: 'filtroProducto',
-
+  name: 'filtroProductos'
 })
-export class FiltroProductoPipe implements PipeTransform {
+export class FiltroProductosPipe implements PipeTransform {
 
- transform(productos: any[], filtro: string): any[] {
+  transform(productos: any[], filtro: string): any[] {
     if (!filtro) return productos;
     filtro = filtro.toLowerCase();
     return productos.filter(p =>

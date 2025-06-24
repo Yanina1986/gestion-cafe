@@ -1,51 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Producto } from '../Clases/producto';
-
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  private _productos : Array<Producto> =[]; 
-  private isBrowser: boolean;
-  constructor() {
-    this.isBrowser = typeof window !== 'undefined' && !!window.localStorage;
-    if (this.isBrowser) {
-    this._productos = JSON.parse(localStorage.getItem("productos") ?? '[]');
-    }
+
+  private apiUrl = 'http://localhost:3000/api/productos';
+
+  constructor(private http: HttpClient) {}
+
+  obtenerProductos(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
 
-  public get Producto(): Array<Producto> {
-    return this._productos;
+  obtenerProducto(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  public getProductos(): void {
-    this._productos = JSON.parse(localStorage.getItem("productos") ?? '[]')
+  crearProducto(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, data);
   }
 
-  public saveProducto(productos: Array<Producto>) {
-    localStorage.setItem('productos', JSON.stringify(productos));
-    this.getProductos();
+  actualizarProducto(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, data);
   }
-  
-  actualizarProducto(producto: Producto) {
-    const productos = this.obtenerProductos().map(p =>
-      p.id === producto.id ? producto : p
-    );
-    localStorage.setItem('productos', JSON.stringify(productos));
+
+  eliminarProducto(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
-  
-  eliminarProducto(id: number) {
-    const productos = this.obtenerProductos().filter(p => p.id !== id);
-    localStorage.setItem('productos', JSON.stringify(productos));
-  }
-  
-  obtenerProductos(): Producto[] {
-    return JSON.parse(localStorage.getItem('productos') || '[]');
-  }
-  
-  
-  
+    
 }
 
    

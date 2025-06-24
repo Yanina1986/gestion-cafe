@@ -1,35 +1,9 @@
-<div class="container">
-   <div class="title">
-      <h4>Listado de productos</h4>
-      <button type="button" class="btn btn-primary" routerLink="/add">Agregar producto</button>
-   </div>
+<input [(ngModel)]="filtro" placeholder="Buscar por nombre o categoría" class="form-control mb-3">
 
-   <table class="table table-hover">
-      <thead>
-         <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Acciones</th>
-         </tr>
-      </thead>
-      <tbody>
-         <tr *ngFor="let producto of productos; let i=index" class="table-active">
-            <td>{{ producto._nombre }}</td>
-            <td>{{ producto._descripcion }}</td>
-            <td>{{ producto._precio_arg }}</td>
-            <td>{{ producto._categoria }}</td>
-            <td>{{producto._imagen}}</td>
-            <td>
-               <img [src]="producto._imagen" alt="Imagen" width="50" *ngIf="producto._imagen">
-            </td>
-            <td>
-               <button type="button" class="btn btn-info btn-sm me-2" (click)="editar(producto._id)">Editar</button>
-               <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(producto._id)">Eliminar</button>
-            </td>
-         </tr>
-      </tbody>
-   </table>
-</div>
+<ul>
+   <li *ngFor="let producto of productos | filtroProductos:filtro">
+      {{ producto.nombre }} - {{ producto.categoria }} - ${{ producto.precio }}
+      <button (click)="editar(producto.id)">Editar</button>
+      <button (click)="eliminar(producto.id)">Eliminar</button>
+   </li>
+</ul>

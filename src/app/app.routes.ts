@@ -6,14 +6,16 @@ import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.co
 import { RegisterComponent } from './auth/register/register.component';
 import { FacturaComponent } from './componetes/factura/factura.component';
 import { DetalleFacturaComponent } from './componetes/detalle-factura/detalle-factura.component';
-import { FormularioComponent } from './components/formulario/formulario.component';
+
 import { FormularioProductoComponent } from './components/formulario-producto/formulario-producto.component';
-//import { RegisterComponent } from './auth/register/register.component';
+
 
 
 export const routes: Routes = [
+
+   { path: '', component: ListaProductoComponent },
    { path: 'producto/nuevo', component: FormularioProductoComponent },
-   { path: 'producto/editar/:id', component: FormularioComponent },
+   { path: 'producto/editar/:id', component: FormularioProductoComponent },
    
    
    

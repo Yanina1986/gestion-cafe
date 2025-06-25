@@ -4,13 +4,13 @@ import { FormBuilder, FormsModule,ReactiveFormsModule,FormGroup } from '@angular
 import { Validators } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FiltroProductoPipe } from '../../pipes/filtro-producto.pipe';
+import { FiltroProductosPipe } from '../../pipes/filtro-productos.pipe'; 
 
 
 @Component({
 
   selector: 'app-login',
-  imports: [CommonModule,ReactiveFormsModule,FiltroProductoPipe,CommonModule,
+  imports: [CommonModule,ReactiveFormsModule,FiltroProductosPipe,CommonModule,
     FormsModule
 ],
   templateUrl: './login.component.html',

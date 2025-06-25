@@ -1,10 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({
-  name: 'filtroProductos'
-})
+@Pipe({ name: 'filtroProductos' })
 export class FiltroProductosPipe implements PipeTransform {
-
   transform(productos: any[], filtro: string): any[] {
     if (!filtro) return productos;
     filtro = filtro.toLowerCase();
@@ -14,5 +11,3 @@ export class FiltroProductosPipe implements PipeTransform {
     );
   }
 }
-
-

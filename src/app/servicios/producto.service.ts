@@ -15,9 +15,8 @@ export class ProductoService {
   }
 
   obtenerProducto(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`http://localhost:3000/api/productos/${id}`);
   }
-
   crearProducto(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, data);
   }

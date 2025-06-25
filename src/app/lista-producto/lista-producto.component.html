@@ -1,9 +1,38 @@
-<input [(ngModel)]="filtro" placeholder="Buscar por nombre o categoría" class="form-control mb-3">
+<div class="container mt-3">
+   <h2>Listado de productos</h2>
 
-<ul>
-   <li *ngFor="let producto of productos | filtroProductos:filtro">
-      {{ producto.nombre }} - {{ producto.categoria }} - ${{ producto.precio }}
-      <button (click)="editar(producto.id)">Editar</button>
-      <button (click)="eliminar(producto.id)">Eliminar</button>
-   </li>
-</ul>
+   <div class="mb-3">
+      <input [(ngModel)]="filtro" class="form-control" placeholder="Buscar por nombre o categoría">
+   </div>
+
+   <button class="btn btn-success mb-3" (click)="agregarProducto()">Agregar producto</button>
+
+   <table class="table table-bordered table-striped">
+      <thead>
+         <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio ARS</th>
+            <th>Categoría</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let p of productos | filtroProductos:filtro">
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.descripcion }}</td>
+            <td>${{ p.precio_ars }}</td>
+            <td>{{ p.categoria }}</td>
+            <td>
+               <img [src]="p.imagen" alt="imagen" width="60" height="60" *ngIf="p.imagen">
+            </td>
+            <td>
+               <button class="btn btn-primary btn-sm" (click)="editar(p.id)">Editar</button>
+               <button class="btn btn-danger btn-sm" (click)="eliminar(p.id)">Eliminar</button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+ 

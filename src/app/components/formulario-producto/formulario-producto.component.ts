@@ -7,7 +7,7 @@ import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-formulario-producto',
-  imports: [ActivatedRoute,Router,ProductoService,ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './formulario-producto.component.html',
   styleUrl: './formulario-producto.component.css'
 })
@@ -25,10 +25,11 @@ export class FormularioProductoComponent implements OnInit {
     this.productoForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: [''],
-      precio: ['', Validators.required],
+      precio_ars: ['', Validators.required],  
       categoria: [''],
       imagen: ['']
     });
+    
   }
 
   ngOnInit() {
@@ -41,17 +42,32 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   guardar() {
-    if (this.productoForm.invalid) return;
-
     const data = this.productoForm.value;
 
-    if (this.id) {
-      this.productoService.actualizarProducto(this.id, data).subscribe(() => this.router.navigate(['/']));
-    } else {
-      this.productoService.crearProducto(data).subscribe(() => this.router.navigate(['/']));
-    }
+  const precio = Number(data.precio_ars);
+  if (isNaN(precio) || precio <= 0) {
+   alert('El precio debe ser un número válido y mayor a 0');
+    return;
   }
 
+    data.precio_ars = precio;  // Reasignamos como número real
+
+    
+    if (this.id) {
+      // Modo edición
+      this.productoService.actualizarProducto(this.id, data).subscribe(() => {
+        alert('Producto actualizado con éxito');
+        this.router.navigate(['/']);
+      });
+    } else {
+      // Modo creación
+      this.productoService.crearProducto(data).subscribe(() => {
+        alert('Producto creado con éxito');
+        this.router.navigate(['/']);
+      });
+    }
+  }
+  
   limpiar() {
     this.productoForm.reset();
   }

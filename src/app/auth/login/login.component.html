@@ -2,7 +2,7 @@
     <div class="card-header text-center">Ingresar</div>
     <div class="card-body">
       <form [formGroup]="loginForm" (ngSubmit)="ingresar()">
-        
+
         <div class="form-floating mb-3">
           <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com">
           <label for="floatingInput">Email</label>
@@ -10,7 +10,7 @@
             Email inválido o requerido.
           </div>
         </div>
-  
+
         <div class="form-floating mb-3">
           <input type="password" formControlName="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="off">
           <label for="floatingPassword">Contraseña</label>
@@ -18,11 +18,23 @@
             Contraseña requerida.
           </div>
         </div>
-  
+
         <button type="submit" class="btn btn-primary w-100" [disabled]="!loginForm.valid">Ingresar</button>
-  
+
         <p *ngIf="error" class="text-danger mt-3 text-center">{{ error }}</p>
       </form>
+      <hr>
+      <p class="text-center mt-3">
+  ¿No tienes una cuenta?
+  <button (click)="router.navigate(['/register'])" class="btn btn-link p-0 align-baseline">
+    Regístrate aquí
+  </button>
+</p>
+
+</div>
+
+
     </div>
-  </div>
-  
+
+
+

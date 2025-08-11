@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
-import { ReactiveFormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,9 +14,9 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-error: string = '';
+  error: string = '';
 
-constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+constructor(private fb: FormBuilder, private auth: AuthService, public router: Router) {
   this.registerForm = this.fb.group({
     nombre: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -33,8 +33,8 @@ registrar(): void {
   this.auth.register(this.registerForm.value).subscribe({
     next: () => {
       alert('Registro exitoso');
-      this.router.navigate(['/listaProductos']);      
-      
+      this.router.navigate(['/productosdisponibles']);
+
     },
     error: () => {
       this.error = 'Error al registrar. Intenta nuevamente.';
@@ -71,7 +71,7 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-  
+
   }
 
   registrar() {
@@ -80,7 +80,7 @@ export class RegisterComponent {
       this.router.navigate(['/login']);
     }
   }
-  
-  
+
+
 
 }*/

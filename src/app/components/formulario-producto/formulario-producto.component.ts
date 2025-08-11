@@ -51,15 +51,16 @@ export class FormularioProductoComponent implements OnInit {
     return;
   }
 
-    data.precio_ars = precio;  // Reasignamos como número real
+    data.precio_ars = precio;
 
 
     if (this.id) {
       // Modo edición
-      this.productoService.actualizarProducto(this.id, data).subscribe(() => {
-        alert('Producto actualizado con éxito');
-        this.router.navigate(['/']);
-      });
+      this.productoService.obtenerProducto(this.id).subscribe(prod => {
+    console.log('Producto cargado:', prod); // 👈 Agregá esto
+    this.productoForm.patchValue(prod);
+  });
+
     } else {
 
       this.productoService.crearProducto(data).subscribe(() => {
@@ -69,9 +70,11 @@ export class FormularioProductoComponent implements OnInit {
     }
   }
 
+
   limpiar() {
     this.productoForm.reset();
   }
+
 }
 
 

@@ -20,7 +20,7 @@ import { Producto } from '../Clases/producto';
 })
 export class ProductoDetalleComponent {
 
-  
+
   @Input('miAtributo')
   public miProducto: Producto = new Producto();
 
@@ -39,5 +39,5 @@ export class ProductoDetalleComponent {
   public editar() {
     this.edita.emit(this.miProducto._id);
     }
-  
+
 }

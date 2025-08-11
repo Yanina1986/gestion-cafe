@@ -37,6 +37,12 @@
 
             <p *ngIf="error" class="text-danger mt-3 text-center">{{ error }}</p>
         </form>
-    </div>
+        <hr>
+      <p class="text-center mt-3">
+  ¿Ya tienes una cuenta?
+  <button (click)="router.navigate(['/login'])" class="btn btn-link p-0 align-baseline">
+    Inicia sesión aquí
+  </button>
+</p>
+
 </div>
-  

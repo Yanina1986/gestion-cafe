@@ -1,26 +1,27 @@
-<div class="container mt-4">
-    <form>
-        <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha</label>
-            <input id="fecha" type="datetime-local" class="form-control">
-        </div>
+<div class="card mt-4 p-4 shadow-sm">
+  <h3>🧾 Factura</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Unitario (ARS)</th>
+        <th>Total (ARS)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of carrito">
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>${{ item.precio }}</td>
+        <td>${{ item.precio * item.cantidad }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-        <div class="mb-3">
-            <label for="numero" class="form-label">Número</label>
-            <input id="numero" type="text" class="form-control">
-        </div>
-    </form>
+  <p><strong>Total en ARS:</strong> ${{ getTotalARS() }}</p>
+  <p><strong>Total en USD:</strong> ${{ getTotalUSD() | number:'1.2-2' }}</p>
 
-    <div class="mb-3">
-        <button class="btn btn-success me-2" (click)="agregar()">Agregar</button>
-        <button class="btn btn-danger" (click)="cantidad.pop()">Quitar</button>
-    </div>
-
-    <div *ngFor="let i of cantidad; let idx = index" class="card mb-2">
-        <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">Ítem #{{ idx + 1 }}</h6>
-            <app-detalle-factura></app-detalle-factura>
-        </div>
-    </div>
+  <button class="btn btn-success" (click)="confirmarCompra()">Confirmar compra</button>
+  <button class="btn btn-secondary ms-2" (click)="cancelarFactura()">Cancelar</button>
 </div>
-  

@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { ProductoDetalleComponent } from "../producto-detalle/producto-detalle.component";
-import { ProductoService } from '../servicios/producto.service'; 
+import { ProductoService } from '../servicios/producto.service';
 import { Producto } from '../Clases/producto';
 import { MatIconModule } from '@angular/material/icon';
-import { FiltroProductosPipe } from '../pipes/filtro-productos.pipe'; 
+import { FiltroProductosPipe } from '../pipes/filtro-productos.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-lista-producto',
@@ -32,8 +32,8 @@ export class ListaProductoComponent {
   }
 
   editar(id: number) {
-    this.router.navigate(['/producto/editar', id]);
-  }
+  this.router.navigate(['/producto/editar', id]);
+}
 
   eliminar(id: number) {
     if (confirm('¿Estás segura/o de eliminar este producto?')) {

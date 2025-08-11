@@ -1,21 +1,35 @@
-import { Component } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-factura',
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule,CommonModule,ReactiveFormsModule,CommonModule,
+    FormsModule
+],
   templateUrl: './factura.component.html',
-  styleUrl: './factura.component.css'
+  styleUrls: ['./factura.component.css']
 })
 export class FacturaComponent {
-  public muestra: boolean = false;
-  public cantidad:Array<number> = [1,2,3,4,5,6,7];
+  @Input() carrito: any[] = [];
+  @Input() dolar: number = 1;
 
-  public aceptar() {
-    this.muestra = !this.muestra;
+  @Output() confirmar = new EventEmitter<void>();
+  @Output() cancelar = new EventEmitter<void>();
+
+  getTotalARS(): number {
+    return this.carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
   }
 
-  public agregar(){
-    this.cantidad.push(58);
+  getTotalUSD(): number {
+    return this.getTotalARS() / this.dolar;
   }
 
+  confirmarCompra() {
+    this.confirmar.emit();
+  }
+
+  cancelarFactura() {
+    this.cancelar.emit();
+  }
 }

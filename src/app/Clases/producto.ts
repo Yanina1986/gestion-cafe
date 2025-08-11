@@ -22,12 +22,12 @@ export class Producto {
         this._descripcion = v;
     }
 
-    public _precio_arg !: number;
+    public precio_ars !: number;
     public get precio_arg(): number{
-        return this._precio_arg;
+        return this.precio_ars;
     }
     public set precio_arg(v: number) {
-        this._precio_arg = v;
+        this.precio_ars = v;
     }
 
     public _categoria !: string;
@@ -54,5 +54,5 @@ export class Producto {
         this._tipoProducto = v;
     }
 
-}
+  }
 

@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-4 mb-3" *ngFor="let producto of productos">
+    <div class="card h-100">
+      <img [src]="producto.imagen || 'https://via.placeholder.com/150'" class="card-img-top" alt="Imagen del producto">
+      <div class="card-body">
+        <h5 class="card-title">{{ producto.nombre }}</h5>
+<p class="card-text">{{ producto.descripcion }}</p>
+<p class="card-text">Precio: ${{ producto.precio_ars}} ARS</p>
+
+
+        <button class="btn btn-success w-100" (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card h-100 text-white" style="background: linear-gradient(135deg, #fc466b, #3f5efb); border: none;">
+<hr class="my-4">
+
+<h3>🛒 Carrito de compras</h3>
+
+<table class="table table-striped table-bordered" *ngIf="carrito.length > 0">
+  <thead class="table-dark">
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of carrito">
+      <td>{{ item.nombre }}</td>
+      <td>{{ item.cantidad }}</td>
+     <td>${{ item.precio}}</td>
+     <td>${{ item.precio * item.cantidad }}</td>
+
+
+      <td>
+        <button class="btn btn-sm btn-danger" (click)="quitarDelCarrito(item)">Quitar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="carrito.length === 0">No hay productos en el carrito.</p>
+
+<button class="btn btn-primary mt-3" *ngIf="carrito.length > 0" (click)="mostrarFacturaToggle()">
+  Ir a Factura
+</button>
+
+<button class="btn btn-secondary mb-3" (click)="listaProducto()">
+  Lista de productos
+</button>
+
+<button (click)="mostrarFactura = true" class="btn btn-success mt-3">
+  Ver factura
+</button>
+<app-factura
+  *ngIf="mostrarFactura"
+  [carrito]="carrito"
+  [dolar]="dolar"
+  (confirmar)="procesarCompra()"
+  (cancelar)="mostrarFactura = false">
+</app-factura>
+
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@ import { FormBuilder, FormsModule,ReactiveFormsModule,FormGroup } from '@angular
 import { Validators } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FiltroProductosPipe } from '../../pipes/filtro-productos.pipe'; 
+import { FiltroProductosPipe } from '../../pipes/filtro-productos.pipe';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    public router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,20 +36,22 @@ export class LoginComponent {
       this.error = 'Por favor completá todos los campos correctamente.';
       return;
     }
-  
+
     const { email, password } = this.loginForm.value;
-  
+
     this.http.post<any>('http://localhost:3000/api/auth/login', { email, password }).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/listaProductos']);
+        this.router.navigate(['/productosdisponibles']);
       },
       error: (err) => {
         this.error = 'Credenciales inválidas o servidor no disponible.';
       }
     });
+
   }
-  
+
+
 }
 
 
@@ -75,7 +77,7 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router
   ) {
-    
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -94,7 +96,7 @@ export class LoginComponent {
       },
       error: (err) => {
         alert('Credenciales inválidas');
-        
+
            }
     });
   }

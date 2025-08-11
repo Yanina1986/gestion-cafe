@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const productoController = require('../controllers/productoController');// conexión MySQL
+const db = require('../db');
+const productoController = require('../controllers/productoController');
 
 
 router.get('/', productoController.listar);
+router.get('/:id', productoController.obtenerPorId);
 router.post('/', productoController.agregar);
 router.put('/:id', productoController.editar);
 router.delete('/:id', productoController.eliminar);
 
+module.exports = router;
 
-// Obtener todos los productos
 router.get('/', (req, res) => {
   db.query('SELECT * FROM productos', (err, results) => {
     if (err) return res.status(500).json({ error: err });
@@ -19,9 +21,10 @@ router.get('/', (req, res) => {
 
 // Obtener un solo producto
 router.get('/:id', (req, res) => {
-  db.query('SELECT * FROM productos WHERE id = ?', [req.params.id], (err, results) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json(results[0]);
+  const id = req.params.id;
+  db.query('SELECT * FROM productos WHERE id = ?', [id], (err, result) => {
+    if (err) return res.status(500).send('Error al obtener producto');
+    res.json(result[0]);
   });
 });
 

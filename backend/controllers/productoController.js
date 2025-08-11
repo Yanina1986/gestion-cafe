@@ -18,12 +18,12 @@ exports.agregar = (req, res) => {
       }
     );
   };
-  
+
 exports.editar = (req,res) => {
     const {id }= req.params;
     const {nombre,descripcion, precio_ars,categoria, imagen} = req.body;
     db.query (
-         'UPDATE productos SET  nombre=?, descripción=?, precio_ars= ?, categoria = ?, imagen =? WHERE id=? ',
+         'UPDATE productos SET  nombre=?, descripcion=?, precio_ars= ?, categoria = ?, imagen =? WHERE id=? ',
          [nombre,descripcion, precio_ars,categoria,imagen, id],
          (err)=> {
             if(err) return res.status(500).send(err);
@@ -35,7 +35,7 @@ exports.eliminar = ( req, res) => {
     const{id}=req.params;
     db.query('DELETE FROM productos WHERE id=?',[id],(err)=>{
        if(err) return res.status(500).send(err);
-       res.json({mensage:'Producto eliminado '}) 
+       res.json({mensage:'Producto eliminado '})
 
     });
 };

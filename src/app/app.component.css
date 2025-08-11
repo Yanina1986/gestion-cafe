@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #d90183, #00bcd4);
+  min-height: 100vh;
+  color: white;
+}
+
+.navbar {
+  border-bottom: 1px solid #444;
+}
+
+.table {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.table thead {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn {
+  border-radius: 20px;
+  padding: 5px 15px;
+}

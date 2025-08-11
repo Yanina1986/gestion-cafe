@@ -25,11 +25,11 @@ export class FormularioProductoComponent implements OnInit {
     this.productoForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: [''],
-      precio_ars: ['', Validators.required],  
+      precio_ars: ['', Validators.required],
       categoria: [''],
       imagen: ['']
     });
-    
+
   }
 
   ngOnInit() {
@@ -42,6 +42,7 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   guardar() {
+
     const data = this.productoForm.value;
 
   const precio = Number(data.precio_ars);
@@ -52,7 +53,7 @@ export class FormularioProductoComponent implements OnInit {
 
     data.precio_ars = precio;  // Reasignamos como número real
 
-    
+
     if (this.id) {
       // Modo edición
       this.productoService.actualizarProducto(this.id, data).subscribe(() => {
@@ -60,14 +61,14 @@ export class FormularioProductoComponent implements OnInit {
         this.router.navigate(['/']);
       });
     } else {
-      // Modo creación
+
       this.productoService.crearProducto(data).subscribe(() => {
         alert('Producto creado con éxito');
         this.router.navigate(['/']);
       });
     }
   }
-  
+
   limpiar() {
     this.productoForm.reset();
   }

@@ -13,10 +13,15 @@ import { FormularioProductoComponent } from './components/formulario-producto/fo
 
 export const routes: Routes = [
 
-   { path: '', component: ListaProductoComponent },
+   { path: '', component: LoginComponent},
+   {path: 'login', component: LoginComponent },
+   {path: 'listaProductos', component: ListaProductoComponent },
+   { path: 'register', component: RegisterComponent },
    { path: 'producto/nuevo', component: FormularioProductoComponent },
    { path: 'producto/editar/:id', component: FormularioProductoComponent },
-   
-   
-   
+   {path: 'producto/:id', component: ProductoDetalleComponent },
+
+
+
+
 ];

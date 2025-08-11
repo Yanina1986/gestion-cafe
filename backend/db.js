@@ -1,15 +1,34 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
+  host: 'mysql.db.mdbgo.com',
+  user: 'walendzik_walendzikusuario',
+  password: 'RXrgS@YbTg7X9h', // ← Reemplazá esto por tu contraseña
+  database: 'walendzik_walendzik',
+  port: 3306,
+  ssl: {
+    rejectUnauthorized: false // ← Aceptar certificados autofirmados para MDBGo
+  }
+});
+
+connection.connect((err) => {
+  if (err) throw err;
+  console.log('Conectado a MySQL remoto en MDBGo');
+});
+
+module.exports = connection;
+
+/*const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'HuiK73naI_',        
-  database: 'gestion_cafe'
+  user: 'walendzik_walendzikusuario',
+  password: 'RXrgS@YbTg7X9h',
+  database: 'walendzik_walendzik'
 });
 
 connection.connect((err) => {
   if (err) throw err;
   console.log('Conectado a MySQL');
 });
-
-module.exports = connection;
+*/

@@ -10,3 +10,7 @@ Cree el conrolador
 // Listar todos los productos
 // Agregar producto
 // Editar producto
+
+
+pego el codigo para que quede arriba en 
+publicar el mdgo al codigo 

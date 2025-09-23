@@ -20,7 +20,13 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@dataconnect/generated": "file:src/dataconnect-generated",
+    "chart.js": "^4.5.0",
+    "date-fns": "^4.1.0",
+    "file-saver": "^2.0.5",
     "firebase": "^12.2.1",
+    "ng2-charts": "^8.0.0",
+    "ngx-papaparse": "^8.0.0",
+    "papaparse": "^5.5.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

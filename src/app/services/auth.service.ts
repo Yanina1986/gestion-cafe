@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { getAuth, User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,17 @@ export class AuthService {
   login(credentials: { email: string, password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
+   async currentUser(): Promise<User | null> {
+    const auth = getAuth();
+    return auth.currentUser;
+  }
+  getUserFromBackend(email: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user/${email}`);
+  }
+
 }
+
+
 
 
 
@@ -32,7 +43,7 @@ export class AuthService {
 
   private key = 'usuarios';
 
-  
+
 
   register(user: any) {
     const usuarios = JSON.parse(localStorage.getItem(this.key) || '[]');

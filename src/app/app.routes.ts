@@ -10,6 +10,8 @@ import { DetalleFacturaComponent } from './componetes/detalle-factura/detalle-fa
 import { FormularioProductoComponent } from './components/formulario-producto/formulario-producto.component';
 import { ProductosDisponiblesComponent } from './productos-disponibles/productos-disponibles.component';
 import { FacturaComponent } from './factura/factura/factura.component';
+import { GmailauthComponent } from './Pagina/gmailauth/gmailauth.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 
@@ -26,6 +28,8 @@ export const routes: Routes = [
   { path: 'producto/nuevo', component: FormularioProductoComponent },
   { path: 'producto/editar/:id', component: FormularioProductoComponent },
   { path: 'producto/:id', component: ProductoDetalleComponent },
+  { path:  'test',component:GmailauthComponent},
+   {path: 'chat',component:ChatComponent}
 ];
 
 

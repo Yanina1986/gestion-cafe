@@ -1,15 +1,19 @@
-<p>chat works!</p>
-<div class="chat-window">
+<div class="chat-container">
   <div class="messages">
-    <div *ngFor="let m of messages$ | async" class="message">
-      <b>{{m.senderName}} ({{m.senderRole}}):</b> {{m.text}}
-      <small>{{m.createdAt?.toDate() | date:'short'}}</small>
+    <div *ngFor="let msg of messages$ | async"
+         [ngClass]="{
+           'my-message': msg.senderId === currentUid,
+           'other-message': msg.senderId !== currentUid
+         }">
+      <strong>{{ msg.senderName }}:</strong>
+      <span>{{ msg.text }}</span>
+      <small>{{ msg.createdAt?.toDate() | date:'shortTime' }}</small>
     </div>
   </div>
 
-  <form (ngSubmit)="send()">
-    <input [(ngModel)]="text" name="text" placeholder="Escribir..." />
-    <button type="submit">Enviar</button>
-  </form>
+  <div class="input-container">
+    <input [(ngModel)]="text" placeholder="Escribe un mensaje..." />
+    <button (click)="send()">Enviar</button>
+  </div>
 </div>
 

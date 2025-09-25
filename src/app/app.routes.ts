@@ -1,3 +1,4 @@
+import { ChatComponent } from './components/chat/chat.component';
 import { Routes} from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { ListaProductoComponent } from './lista-producto/lista-producto.component';
@@ -11,15 +12,13 @@ import { FormularioProductoComponent } from './components/formulario-producto/fo
 import { ProductosDisponiblesComponent } from './productos-disponibles/productos-disponibles.component';
 import { FacturaComponent } from './factura/factura/factura.component';
 import { GmailauthComponent } from './Pagina/gmailauth/gmailauth.component';
-import { ChatComponent } from './components/chat/chat.component';
 
 
 
 export const routes: Routes = [
 
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
+  {path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'productosdisponibles', component: ProductosDisponiblesComponent },
@@ -28,8 +27,8 @@ export const routes: Routes = [
   { path: 'producto/nuevo', component: FormularioProductoComponent },
   { path: 'producto/editar/:id', component: FormularioProductoComponent },
   { path: 'producto/:id', component: ProductoDetalleComponent },
-  { path:  'test',component:GmailauthComponent},
-   {path: 'chat',component:ChatComponent}
+  { path: 'test',component:GmailauthComponent},
+  { path: 'chat/:id',component:ChatComponent }
 ];
 
 

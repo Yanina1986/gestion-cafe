@@ -14,3 +14,17 @@ Cree el conrolador
 
 pego el codigo para que quede arriba en 
 publicar el mdgo al codigo 
+
+prender node node db.js 
+
+ng generate service services/report -> crear servicios. (servicio que comunica con el backend)
+
+
+CREATE TABLE Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellido VARCHAR(50) NOT NULL,
+    FecNac DATE NOT NULL,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    Password VARCHAR(50) NOT NULL
+);

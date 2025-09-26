@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms"; 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
@@ -15,13 +15,16 @@ import { ListaProductoComponent } from "./lista-producto/lista-producto.componen
 import { provideFirebaseApp, initializeApp } from "@angular/fire/app";
 import { provideAuth, getAuth } from "@angular/fire/auth";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
+import { ReportService } from "./services/report.service";
+import { ReportsComponent } from "./components/reports/reports.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductoComponent,
     ListaProductoComponent,
-    FiltroProductoPipe
+    FiltroProductoPipe,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

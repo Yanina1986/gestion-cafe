@@ -21,13 +21,14 @@ module.exports = connection;
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'walendzik_walendzikusuario',
-  password: 'RXrgS@YbTg7X9h',
-  database: 'walendzik_walendzik'
+  user: 'root',
+  password: 'HuiK73Nai_',
+  database: 'cafe_prueba'
 });
 
 connection.connect((err) => {
   if (err) throw err;
   console.log('Conectado a MySQL');
 });
-*/
+
+module.exports = connection;*/

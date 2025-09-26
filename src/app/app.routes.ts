@@ -13,6 +13,10 @@ import { ProductosDisponiblesComponent } from './productos-disponibles/productos
 import { FacturaComponent } from './factura/factura/factura.component';
 import { GmailauthComponent } from './Pagina/gmailauth/gmailauth.component';
 
+import { ReportsComponent } from './components/reports/reports.component';
+
+
+
 
 
 export const routes: Routes = [
@@ -28,7 +32,8 @@ export const routes: Routes = [
   { path: 'producto/editar/:id', component: FormularioProductoComponent },
   { path: 'producto/:id', component: ProductoDetalleComponent },
   { path: 'test',component:GmailauthComponent},
-  { path: 'chat/:id',component:ChatComponent }
+  { path: 'chat/:id',component:ChatComponent },
+  { path: 'reportes', component: ReportsComponent }
 ];
 
 

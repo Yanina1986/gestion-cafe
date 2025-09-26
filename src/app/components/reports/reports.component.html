@@ -1,0 +1,48 @@
+<div class="reports-page">
+  <h2>Reportes de Ventas</h2>
+
+  <section class="filters">
+    <label>
+      Desde:
+      <input type="date" [(ngModel)]="fromDate" />
+    </label>
+    <label>
+      Hasta:
+      <input type="date" [(ngModel)]="toDate" />
+    </label>
+    <label>
+      Agrupar por:
+      <select [(ngModel)]="groupBy">
+        <option value="day">Día</option>
+        <option value="week">Semana</option>
+        <option value="month">Mes</option>
+      </select>
+    </label>
+
+    <button (click)="onFilterApply()">Aplicar</button>
+    <button (click)="downloadCsv()" [disabled]="downloading">{{ downloading ? 'Descargando...' : 'Exportar CSV' }}</button>
+  </section>
+
+  <section class="charts">
+    <div class="chart-card">
+      <h3>Ventas ({{ groupBy }})</h3>
+      <div *ngIf="loadingSales">Cargando ventas...</div>
+      <canvas *ngIf="!loadingSales" baseChart
+              [data]="salesChartData"
+              [options]="salesChartOptions"
+              chartType="bar">
+      </canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>Productos más vendidos</h3>
+      <div *ngIf="loadingTop">Cargando top productos...</div>
+      <canvas *ngIf="!loadingTop" baseChart
+              [data]="topChartData"
+              [options]="topChartOptions"
+              chartType="bar">
+      </canvas>
+    </div>
+  </section>
+</div>
+

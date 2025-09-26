@@ -1,19 +1,20 @@
 <div class="chat-container">
+  <!-- Lista de mensajes -->
   <div class="messages">
-    <div *ngFor="let msg of messages$ | async"
-         [ngClass]="{
-           'my-message': msg.senderId === currentUid,
-           'other-message': msg.senderId !== currentUid
-         }">
-      <strong>{{ msg.senderName }}:</strong>
-      <span>{{ msg.text }}</span>
-      <small>{{ msg.createdAt?.toDate() | date:'shortTime' }}</small>
+    <div
+      *ngFor="let msg of messages$ | async"
+      [ngClass]="{ 'my-message': msg.senderId === currentUid, 'other-message': msg.senderId !== currentUid }"
+      class="message-bubble"
+    >
+      <div class="sender">{{ msg.senderName }}</div>
+      <div class="text">{{ msg.text }}</div>
+      <div class="time">{{ msg.createdAt?.toDate ? (msg.createdAt.toDate() | date:'shortTime') : '' }}</div>
     </div>
   </div>
 
+  <!-- Input de texto -->
   <div class="input-container">
-    <input [(ngModel)]="text" placeholder="Escribe un mensaje..." />
+    <input [(ngModel)]="text" placeholder="Escribe un mensaje..." (keyup.enter)="send()" />
     <button (click)="send()">Enviar</button>
   </div>
 </div>
-

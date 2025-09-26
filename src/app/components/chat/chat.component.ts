@@ -4,6 +4,7 @@ import { ChatService } from '../../services/chat.service';
 import { getAuth } from 'firebase/auth';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-chat',
@@ -19,15 +20,15 @@ export class ChatComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private chatSvc: ChatService
+    private chatSvc: ChatService,
+    private auth: Auth
   ) {}
 
   ngOnInit() {
     this.chatId = this.route.snapshot.paramMap.get('id')!;
 
     // Intentamos obtener usuario real
-    const auth = getAuth();
-    const user = auth.currentUser;
+    const user = this.auth.currentUser;
 
     // Si no hay usuario logueado → usamos fake
     const fakeUser = { uid: 'fakeUser123', displayName: 'Usuario Demo' };
@@ -38,8 +39,7 @@ export class ChatComponent implements OnInit {
   }
 
   async send() {
-    const auth = getAuth();
-    const user = auth.currentUser;
+    const user = this.auth.currentUser;
 
     // Fake si no hay login
     const fakeUser = { uid: 'fakeUser123', displayName: 'Usuario Demo' };
@@ -49,10 +49,11 @@ export class ChatComponent implements OnInit {
 
     await this.chatSvc.sendMessage(
       this.chatId,
-      finalUser as any,   // 👈 acá forzamos el tipo
+      finalUser as any,
       this.text.trim()
     );
 
+    console.warn('Mensaje enviado por:', finalUser);
     this.text = '';
   }
 }
@@ -159,4 +160,3 @@ async send() {
   }
 
   }*/
-

@@ -8,6 +8,8 @@ import { ProductoService } from '../servicios/producto.service';
 import { BcraService } from '../services/bcra.service';
 import { FacturaComponent } from '../factura/factura/factura.component';
 import { Router } from '@angular/router';
+import { ChatService } from '../services/chat.service';
+import { ChatComponent } from '../components/chat/chat.component';
 
 @Component({
   selector: 'app-productos-disponibles',
@@ -16,7 +18,8 @@ import { Router } from '@angular/router';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    FacturaComponent
+    FacturaComponent,
+    ChatComponent
   ],
   templateUrl: './productos-disponibles.component.html',
   styleUrls: ['./productos-disponibles.component.css']
@@ -30,7 +33,9 @@ export class ProductosDisponiblesComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private bcraService: BcraService,
-    private routes: Router
+    private routes: Router,
+    private chatService: ChatService
+
   ) {}
 
   ngOnInit(): void {

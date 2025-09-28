@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 import { AppComponent } from "./app.component";
 import { ProductoComponent } from "./producto/producto.component";
@@ -32,7 +33,7 @@ import { ReportsComponent } from "./components/reports/reports.component";
     FormsModule,
     HttpClientModule,
     MatCardModule,
-    CommonModule,
+    MatSnackBarModule,
     // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

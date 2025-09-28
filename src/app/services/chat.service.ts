@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, query, orderBy, collectionData } from '@angular/fire/firestore';
 import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import { ChatUser } from '../models/chatuser.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +19,14 @@ export class ChatService {
   }
 
   // 🔹 Enviar un mensaje
-  async sendMessage(chatId: string, user: User, text: string) {
+  async sendMessage(chatId: string, user: ChatUser, text: string) {
     const messagesRef = collection(this.firestore, `chats/${chatId}/messages`);
+    console.log('Enviando mensaje:', { chatId, user, text }); // Depuración
     return addDoc(messagesRef, {
       text,
       senderId: user.uid,
-      senderName: user.displayName || user.email,
-      senderRole: 'user', // 🔹 acá podrías leer el rol real desde tu backend
+      senderName: user.email +'-'+ user.rol || user.email,
+      senderRole: user.rol, // 🔹 acá podrías leer el rol real desde tu backend
       createdAt: new Date()
     });
   }

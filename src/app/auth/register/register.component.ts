@@ -33,7 +33,7 @@ registrar(): void {
   this.auth.register(this.registerForm.value).subscribe({
     next: () => {
       alert('Registro exitoso');
-      this.router.navigate(['/productosdisponibles']);
+      this.router.navigate(['/login']);
 
     },
     error: () => {

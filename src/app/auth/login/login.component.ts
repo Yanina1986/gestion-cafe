@@ -42,6 +42,8 @@ export class LoginComponent {
     this.http.post<any>('http://localhost:3000/api/auth/login', { email, password }).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('user',JSON.stringify(res.usuario));
+
         this.router.navigate(['/productosdisponibles']);
       },
       error: (err) => {

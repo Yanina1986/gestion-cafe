@@ -1,3 +1,15 @@
+<div class="row">
+  <div class="col-2">
+    <h1>Panel de Reportes</h1>
+    <li>
+      <a routerLink="/reportes">Facturación</a>
+       </li>
+       <li>
+      <a routerLink="/reportes">Graficas</a>
+       </li>
+  </div>
+  <div class="col-10 text-end">
+
 <div class="reports-page">
   <h2>Reportes de Ventas</h2>
 
@@ -23,7 +35,7 @@
     <button (click)="downloadCsv()" [disabled]="downloading">{{ downloading ? 'Descargando...' : 'Exportar CSV' }}</button>
   </section>
 
-  <section class="charts">
+  <!--section class="charts">
     <div class="chart-card">
       <h3>Ventas ({{ groupBy }})</h3>
       <div *ngIf="loadingSales">Cargando ventas...</div>
@@ -43,6 +55,8 @@
               chartType="bar">
       </canvas>
     </div>
-  </section>
+  </section-->
 </div>
 
+  </div>
+</div>

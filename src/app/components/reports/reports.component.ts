@@ -1,38 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartConfiguration } from 'chart.js';
+import { Chart,ArcElement, BarController, ChartConfiguration, Legend, PieController, Tooltip, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import { FormsModule, NgModel } from '@angular/forms';
+
+
+Chart.register(ArcElement, Tooltip, Legend, PieController, BarController, CategoryScale, LinearScale, BarElement);
 
 @Component({
   selector: 'app-reports',
-  imports: [CommonModule,BaseChartDirective],
-
-
-  template: `
-    <div class="p-3">
-      <h2>Reportes de Ventas</h2>
-
-      <!-- 📊 Gráfico de Ventas -->
-      <div style="width: 600px; margin: 20px auto;">
-        <canvas baseChart
-          [data]="salesChartData"
-          [options]="chartOptions"
-          type="bar">
-        </canvas>
-      </div>
-
-      <!-- 📊 Gráfico de Productos -->
-      <div style="width: 600px; margin: 20px auto;">
-        <canvas baseChart
-          [data]="productsChartData"
-          [options]="chartOptions"
-          type="pie">
-        </canvas>
-      </div>
-    </div>
-  `
+  imports: [CommonModule,CommonModule,CommonModule,CommonModule,FormsModule],
+  templateUrl: './reports.component.html',
 })
 export class ReportsComponent {
+
+  fromDate: string = '';
+  toDate: string = '';
+  groupBy: string = 'day';
+  downloading: boolean = false;
+
+  constructor() { }
 
   chartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -57,6 +44,24 @@ export class ReportsComponent {
       }
     ]
   };
+
+  onFilterApply () {
+    console.log('Filtro aplicado:', this.fromDate, this.toDate, this.groupBy);
+    // Aquí iría la lógica para actualizar los datos del gráfico según los filtros aplicados
+  }
+
+  downloadCsv() {
+    this.downloading = true;
+    const csvContent = 'data:text/csv;charset=utf-8,Fecha,Ventas\n2024-01-01,5\n2024-01-02,10\n2024-01-03,7\n2024-01-04,14\n2024-01-05,9';
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'reporte_ventas.csv');
+    document.body.appendChild(link); // Required for FF
+    link.click();
+    document.body.removeChild(link);
+    this.downloading = false;
+  }
 }
 
 

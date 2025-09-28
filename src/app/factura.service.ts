@@ -15,6 +15,10 @@ export class FacturaService {
     return this.http.post(this.apiUrl, factura);
   }
 
+  listarFacturas(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
   getFacturas(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }

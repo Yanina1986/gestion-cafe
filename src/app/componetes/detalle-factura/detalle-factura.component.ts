@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-detalle-factura',
   standalone: true,
-  imports: [CommonModule,FormsModule,NgModel],
+  imports: [CommonModule,FormsModule],
   templateUrl: './detalle-factura.component.html',
   styleUrl: './detalle-factura.component.css'
 })

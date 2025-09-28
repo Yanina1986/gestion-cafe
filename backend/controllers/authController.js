@@ -29,6 +29,6 @@ exports.login = (req, res) => {
     }
 
     const token = jwt.sign({ id: usuario.id }, SECRET_KEY, { expiresIn: '1h' });
-    res.send({ token, usuario: { id: usuario.id, nombre: usuario.nombre, email: usuario.email } });
+    res.send({ token, usuario: { id: usuario.id, nombre: usuario.nombre, email: usuario.email , rol: usuario.rol} });
   });
 };

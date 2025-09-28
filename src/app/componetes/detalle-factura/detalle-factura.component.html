@@ -1,11 +1,47 @@
 
-<p> <select>
-        <option>Producto 1 </option>
-        <option>Producto 2 </option>
-        <option>Producto 3 </option>
-        <option>Producto 4 </option>
-        <option>Producto 5 </option>
-    </select>
-    cantidad: <input type="text">
-    precio: <input type="text">
-    total: <input type="text"> </p>
+<div>
+  <h3>🛒 Nueva Factura</h3>
+
+  <form (ngSubmit)="agregarProducto()">
+    <p>
+      <label>Producto:</label>
+      <select [(ngModel)]="nuevoProducto.producto_id" name="producto">
+        <option *ngFor="let p of productos" [value]="p.id">{{ p.nombre }}</option>
+      </select>
+
+      <label>Cantidad:</label>
+      <input type="number" [(ngModel)]="nuevoProducto.cantidad" name="cantidad">
+
+      <label>Precio:</label>
+      <input type="number" [(ngModel)]="nuevoProducto.precio" name="precio">
+
+      <button type="submit">➕ Agregar</button>
+    </p>
+  </form>
+
+  <h4>🧾 Detalle</h4>
+  <table border="1" width="100%">
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let item of carrito; let i = index">
+      <td>{{ item.nombre }}</td>
+      <td>{{ item.cantidad }}</td>
+      <td>{{ item.precio }}</td>
+      <td>{{ item.cantidad * item.precio }}</td>
+      <td><button (click)="eliminarProducto(i)">❌</button></td>
+    </tr>
+  </table>
+
+  <!-- Aquí usamos tu FacturaComponent -->
+  <app-factura
+    [carrito]="carrito"
+    [dolar]="dolar"
+    (confirmar)="guardarFactura()"
+    (cancelar)="cancelarFactura()">
+  </app-factura>
+</div>

@@ -1,7 +1,7 @@
 import db from "../db.js";
 
 // Obtener todas las facturas
-exports.listarTodas = (req, res) => {
+export const listarTodas = (req, res) => {
   db.query('SELECT * FROM facturas', (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
@@ -9,7 +9,7 @@ exports.listarTodas = (req, res) => {
 };
 
 // Obtener una factura con su detalle
-exports.obtenerPorId = (req, res) => {
+export const obtenerPorId = (req, res) => {
   const id = req.params.id;
 
   // Traer cabecera
@@ -30,7 +30,7 @@ exports.obtenerPorId = (req, res) => {
 };
 
 // Crear una factura con detalle
-exports.agregar = (req, res) => {
+export const agregar = (req, res) => {
   const { cliente, numeroFactura, totalARS, totalUSD, items } = req.body;
 
   const sqlCabecera =
@@ -62,7 +62,7 @@ exports.agregar = (req, res) => {
 };
 
 // Actualizar una factura (solo cabecera en este ejemplo)
-exports.editar = (req, res) => {
+export const editar = (req, res) => {
   const { cliente, numeroFactura, totalARS, totalUSD } = req.body;
   const sql =
     'UPDATE facturas SET cliente = ?, numero_factura = ?, total_ars = ?, total_usd = ? WHERE id = ?';
@@ -73,7 +73,7 @@ exports.editar = (req, res) => {
 };
 
 // Eliminar una factura (y su detalle)
-exports.eliminar = (req, res) => {
+export const eliminar = (req, res) => {
   const id = req.params.id;
 
   db.query('DELETE FROM detalle_factura WHERE factura_id = ?', [id], (err) => {

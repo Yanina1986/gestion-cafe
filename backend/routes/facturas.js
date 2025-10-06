@@ -1,8 +1,12 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const db = require("../db");
-const facturaController = require("../controllers/facturaController");
+const db = require('../db');
+const facturaController = require('../controllers/facturaController');
+//import {obtenerPorId, listarTodas, agregar, editar, eliminar } from "../controllers/facturaController.js";
 
+
+
+//module.exports = router;
 router.get("/:id", facturaController.obtenerPorId);
 router.get("/", facturaController.listarTodas);
 router.post("/", facturaController.agregar);

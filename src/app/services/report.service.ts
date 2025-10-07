@@ -9,27 +9,20 @@ import { Observable } from 'rxjs';
 })
 export class ReportService {
 
-  private baseUrl = 'http://localhost:3000/api/reports';
-
+  private baseUrl = 'http://localhost:3000/api/reportes';
   constructor(private http: HttpClient) { }
 
-  downloadInvoiceCsv (from?: string, to?: string): Observable<Blob>{
 
-    let params =new HttpParams();
-    if (from) params = params.set('from', from);
-    if (to) params = params.set ('to', to)
-     return this.http.get(`${this.baseUrl}/export/invoices`, { params, responseType: 'blob' });
+  getVentasPorDia(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/ventas-por-dia`);
   }
 
-  getSales(groupBy: 'day' | 'week' | 'month', from?: string, to?: string): Observable<{ date: string; total: number }[]> {
-    let params = new HttpParams().set('groupBy', groupBy);
-    if (from) params = params.set('from', from);
-    if (to) params = params.set('to', to);
-    return this.http.get<{ date: string; total: number }[]>(`${this.baseUrl}/sales`, { params });
+  getProductosMasVendidos(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/productos-mas-vendidos`);
   }
 
-  getTopProducts(limit = 10): Observable<{ productName: string; totalSold: number }[]> {
-    const params = new HttpParams().set('limit', String(limit));
-    return this.http.get<{ productName: string; totalSold: number }[]>(`${this.baseUrl}/top-products`, { params });
+
+  exportarCSV(): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/exportar`, { responseType: 'blob' });
   }
 }

@@ -12,4 +12,8 @@ router.get("/", facturaController.listarTodas);
 router.post("/", facturaController.agregar);
 router.put("/:id", facturaController.editar);
 router.delete("/:id", facturaController.eliminar);
+/*router.get("/reporte/ventas-por-dia", facturaController.obtenerVentasPorDia);
+router.get("reporte/productos-mas-vendidos", facturaController.ObtenerProductosMasVendidos);
+router.get("/reporte/exportar", facturaController.exportarFacturas);*/
+
 module.exports = router;

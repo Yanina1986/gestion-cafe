@@ -1,62 +1,60 @@
-<div class="row">
-  <div class="col-2">
-    <h1>Panel de Reportes</h1>
-    <li>
-      <a routerLink="/reportes">Facturación</a>
-       </li>
-       <li>
-      <a routerLink="/reportes">Graficas</a>
-       </li>
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">📊 Reportes de Ventas</h2>
+
+
+  <div class="card p-3 mb-4 shadow-sm">
+    <h5>Filtros</h5>
+    <div class="row align-items-end">
+      <div class="col-md-4">
+        <label for="fromDate" class="form-label">Desde</label>
+        <input
+          type="date"
+          id="fromDate"
+          class="form-control"
+          [(ngModel)]="fromDate"
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="toDate" class="form-label">Hasta</label>
+        <input
+          type="date"
+          id="toDate"
+          class="form-control"
+          [(ngModel)]="toDate"
+        />
+      </div>
+      <div class="col-md-4 d-flex gap-2">
+        <button class="btn btn-primary w-100" (click)="onFilterApply()">
+          Aplicar filtros
+        </button>
+        <button
+          class="btn btn-success w-100"
+          (click)="downloadCsv()"
+          [disabled]="downloading"
+        >
+          {{ downloading ? 'Descargando...' : 'Exportar CSV' }}
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="col-10 text-end">
 
-<div class="reports-page">
-  <h2>Reportes de Ventas</h2>
+  <div class="card p-4 mb-4 shadow-sm">
+    <h5 class="mb-3">📅 Ventas por Día</h5>
+    <canvas
+      baseChart
+      [data]="salesChartData"
+      [options]="chartOptions"
+      chartType="bar"
+    ></canvas>
+  </div>
 
-  <section class="filters">
-    <label>
-      Desde:
-      <input type="date" [(ngModel)]="fromDate" />
-    </label>
-    <label>
-      Hasta:
-      <input type="date" [(ngModel)]="toDate" />
-    </label>
-    <label>
-      Agrupar por:
-      <select [(ngModel)]="groupBy">
-        <option value="day">Día</option>
-        <option value="week">Semana</option>
-        <option value="month">Mes</option>
-      </select>
-    </label>
-
-    <button (click)="onFilterApply()">Aplicar</button>
-    <button (click)="downloadCsv()" [disabled]="downloading">{{ downloading ? 'Descargando...' : 'Exportar CSV' }}</button>
-  </section>
-
-  <!--section class="charts">
-    <div class="chart-card">
-      <h3>Ventas ({{ groupBy }})</h3>
-      <div *ngIf="loadingSales">Cargando ventas...</div>
-      <canvas *ngIf="!loadingSales" baseChart
-              [data]="salesChartData"
-              [options]="salesChartOptions"
-              chartType="bar">
-      </canvas>
-    </div>
-
-    <div class="chart-card">
-      <h3>Productos más vendidos</h3>
-      <div *ngIf="loadingTop">Cargando top productos...</div>
-      <canvas *ngIf="!loadingTop" baseChart
-              [data]="topChartData"
-              [options]="topChartOptions"
-              chartType="bar">
-      </canvas>
-    </div>
-  </section-->
-</div>
-
+  <div class="card p-4 shadow-sm">
+    <h5 class="mb-3">🥐 Productos Más Vendidos</h5>
+    <canvas
+      baseChart
+      [data]="productsChartData"
+      [options]="chartOptions"
+      chartType="pie"
+    ></canvas>
   </div>
 </div>

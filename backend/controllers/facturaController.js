@@ -99,7 +99,7 @@ export const obtenerVentasPorDia = (req, res) => {
   });
 };
 
-export const ObtenerProductosMasVendidos = (req, res) => {
+/*export const ObtenerProductosMasVendidos = (req, res) => {
   const sql = `
     SELECT producto, SUM(cantidad) as total_vendido
     FROM detalle_factura
@@ -111,7 +111,7 @@ export const ObtenerProductosMasVendidos = (req, res) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
   });
-};
+};*/
 export const exportarFacturas = (req, res) => {
   const sql = `
     SELECT f.id, f.cliente, f.numero_factura, f.total_ars, f.total_usd, f.fecha,
@@ -123,7 +123,6 @@ export const exportarFacturas = (req, res) => {
   db.query(sql, (err, results) => {
     if (err) return res.status(500).json({ error: err });
 
-    // Aquí podrías convertir results a CSV o Excel si es necesario
     res.json(results);
   });
 };

@@ -22,7 +22,6 @@ export class ReportsComponent {
   toDate: string = '';
   downloading: boolean = false;
 
-  // Datos de los gráficos
   salesChartData: ChartConfiguration['data'] = { labels: [], datasets: [{ data: [], label: 'Ventas (ARS)' }] };
   productsChartData: ChartConfiguration['data'] = { labels: [], datasets: [{ data: [], label: 'Productos más vendidos' }] };
 
@@ -33,17 +32,58 @@ export class ReportsComponent {
 
   constructor(private reportService: ReportService) {}
 
-  ngOnInit(): void {
-    this.reportService.getVentasPorDia().subscribe({
-      next: (data) => console.log('Ventas por día:', data),
-      error: (error) => console.error('Error al obtener ventas por día:', error)
-    }
-    );
+  ngOnInit() {
+    this.loadSalesData();
+    this.loadTopProducts();
+  }
 
-    this.reportService.getProductosMasVendidos().subscribe({
-      next: (data) => console.log('Productos más vendidos:', data),
-      error: (error) => console.error('Error al obtener productos más vendidos:', error)
+
+  // 📅 Cargar ventas por día
+
+  loadSalesData() {
+    this.reportService.getVentasPorDia().subscribe({
+      next: (data) => {
+        this.salesChartData.labels = data.map((d) => d.dia);
+        this.salesChartData.datasets[0].data = data.map((d) => d.total_ars);
+      },
+      error: (err) => console.error('Error cargando ventas:', err),
     });
   }
 
+  // 🥐 Cargar productos más vendidos
+  loadTopProducts() {
+    this.reportService.getProductosMasVendidos().subscribe({
+      next: (data) => {
+        this.productsChartData.labels = data.map((p) => p.producto);
+        this.productsChartData.datasets[0].data = data.map((p) => p.total_vendido);
+      },
+      error: (err) => console.error('Error cargando productos:', err),
+    });
+  }
+
+  // 🔄 Aplicar filtros (en este caso solo recarga datos)
+  onFilterApply() {
+    this.loadSalesData();
+    this.loadTopProducts();
+  }
+
+  // 💾 Descargar CSV real desde backend
+  downloadCsv() {
+    this.downloading = true;
+    this.reportService.exportarCSV().subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'reporte_facturas.csv';
+        link.click();
+        window.URL.revokeObjectURL(url);
+        this.downloading = false;
+      },
+      error: (err) => {
+        console.error('Error descargando CSV:', err);
+        this.downloading = false;
+      },
+    });
+  }
 }

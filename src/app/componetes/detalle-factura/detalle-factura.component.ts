@@ -47,11 +47,12 @@ export class DetalleFacturaComponent {
       totalARS: this.carrito.reduce((t, i) => t + (i.cantidad * i.precio), 0),
       totalUSD: this.carrito.reduce((t, i) => t + (i.cantidad * i.precio), 0) / this.dolar,
       items: this.carrito.map(i => ({
-        producto_id: i.producto_id,
-        cantidad: i.cantidad,
-        precio_unitario: i.precio
-      }))
+  producto: i.nombre,
+  precio_unitario: i.precio,
+  total: i.cantidad * i.precio
+}))
     };
+
 
     this.facturaService.crearFactura(factura).subscribe({
       next: (res) => {

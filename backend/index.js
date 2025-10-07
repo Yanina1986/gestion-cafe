@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/productos', productoRoutes);
 app.use('/api/facturas',facturasRoutes);
-app.use('/api/reporte', reporteRoutes);
+app.use('/api/reportes', reporteRoutes);
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

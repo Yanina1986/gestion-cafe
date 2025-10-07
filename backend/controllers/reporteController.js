@@ -14,7 +14,7 @@ export const obtenerVentasPorDia = (req, res) => {
   });
 };
 
-export const obtenerProductosMasVendidos = (req, res) => {
+export const ObtenerProductosMasVendidos = (req, res) => {
   const sql = `
     SELECT producto, SUM(cantidad) as total_vendido
     FROM detalle_factura

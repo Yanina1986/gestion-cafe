@@ -50,14 +50,14 @@ export class ReportsComponent {
     });
   }
 
-  // 🥐 Cargar productos más vendidos
+ // 🏆 Cargar productos más vendidos
   loadTopProducts() {
     this.reportService.getProductosMasVendidos().subscribe({
       next: (data) => {
-        this.productsChartData.labels = data.map((p) => p.producto);
-        this.productsChartData.datasets[0].data = data.map((p) => p.total_vendido);
+        this.productsChartData.labels = data.map((d) => d.nombre);
+        this.productsChartData.datasets[0].data = data.map((d) => d.cantidad_vendida);
       },
-      error: (err) => console.error('Error cargando productos:', err),
+      error: (err) => console.error('Error cargando productos más vendidos:', err),
     });
   }
 

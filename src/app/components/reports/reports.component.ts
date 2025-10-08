@@ -9,11 +9,15 @@ import { ReportService } from '../../services/report.service';
 
 
 
+
+
 Chart.register(ArcElement, Tooltip, Legend, PieController, BarController, CategoryScale, LinearScale, BarElement);
 
 @Component({
   selector: 'app-reports',
+
   imports: [CommonModule,CommonModule,CommonModule,CommonModule,FormsModule,BaseChartDirective],
+  styleUrls: ['./reports.component.css'],
   templateUrl: './reports.component.html',
 })
 export class ReportsComponent {

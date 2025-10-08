@@ -25,6 +25,7 @@
     "date-fns": "^4.1.0",
     "file-saver": "^2.0.5",
     "firebase": "^12.3.0",
+    "json2csv": "^6.0.0-alpha.2",
     "ng2-charts": "^8.0.0",
     "ngx-papaparse": "^8.0.0",
     "papaparse": "^5.5.3",

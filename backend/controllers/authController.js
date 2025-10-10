@@ -32,3 +32,8 @@ exports.login = (req, res) => {
     res.send({ token, usuario: { id: usuario.id, nombre: usuario.nombre, email: usuario.email , rol: usuario.rol} });
   });
 };
+
+exports.logout = (req, res) => {
+
+  res.send({ message: 'Usuario desconectado' });
+};

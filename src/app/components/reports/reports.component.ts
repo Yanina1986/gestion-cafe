@@ -15,7 +15,7 @@ import {
 } from 'chart.js';
 import { FormsModule } from '@angular/forms';
 import { ReportService } from '../../services/report.service';
-//import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 // Registrar los elementos de Chart.js necesarios
 Chart.register(ArcElement, Tooltip, Legend, PieController, BarController, CategoryScale, LinearScale, BarElement);
@@ -62,7 +62,7 @@ fromDate: string = '';
     }
   };
 
-  constructor(private reportService: ReportService) {}
+  constructor(private reportService: ReportService, private router: Router) {}
 
   ngOnInit() {  }
 
@@ -143,5 +143,8 @@ fromDate: string = '';
         this.downloading = false;
       },
     });
+  }
+  volverHome() {
+    this.router.navigate(['/home']);
   }
 }

@@ -23,6 +23,7 @@
           [(ngModel)]="toDate"
         />
       </div>
+
       <div class="col-md-4 d-flex gap-2">
         <button class="btn btn-primary w-100" (click)="onFilterApply()">
           Aplicar filtros
@@ -34,6 +35,7 @@
         >
           {{ downloading ? 'Descargando...' : 'Exportar CSV' }}
         </button>
+        <button class="btn btn-secondary w-100" (click)="volverHome()">Volver</button>
       </div>
     </div>
   </div>

@@ -61,7 +61,7 @@ export class DetalleFacturaComponent {
         this.carrito = [];
       },
       error: (err) => {
-        alert('❌ Error al guardar factura');
+        alert(' Error al guardar factura - revisar');
         console.error(err);
       }
     });

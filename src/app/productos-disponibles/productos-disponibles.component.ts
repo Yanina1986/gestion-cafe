@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { ChatService } from '../services/chat.service';
 import { ChatComponent } from '../components/chat/chat.component';
 
-
 @Component({
   selector: 'app-productos-disponibles',
   standalone: true,
@@ -26,7 +25,7 @@ import { ChatComponent } from '../components/chat/chat.component';
   styleUrls: ['./productos-disponibles.component.css']
 })
 export class ProductosDisponiblesComponent implements OnInit {
- productos: Producto[] = [];
+  productos: Producto[] = [];
   carrito: any[] = [];
   mostrarFactura: boolean = false;
   dolar: number = 1;
@@ -109,6 +108,9 @@ export class ProductosDisponiblesComponent implements OnInit {
    listaProducto() {
     this.routes.navigate(['/listaProductos']);
   }
-}
 
+  volverHome() {
+    this.routes.navigate(['/home']);
+  }
+}
 

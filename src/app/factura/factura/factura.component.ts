@@ -12,6 +12,7 @@ import { Auth } from '@angular/fire/auth';
   templateUrl: './factura.component.html',
   styleUrls: ['./factura.component.css']
 })
+
 export class FacturaComponent {
   @Input() carrito: any[] = [];
   @Input() dolar: number = 1;
@@ -55,7 +56,7 @@ export class FacturaComponent {
         this.carrito = [];
       },
       error: (err) => {
-        alert('❌ Error al guardar factura');
+        alert(' Error al guardar factura - revisar consola');
         console.error(err);
       }
     });

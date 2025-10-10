@@ -1,6 +1,7 @@
-import db from "../db.js";
+const db = require("../db.js");
 
-export const listarTodas = (req, res) => {
+// Obtener todas las facturas
+exports.listarTodas = (req, res) => {
   db.query('SELECT * FROM facturas', (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
@@ -8,7 +9,7 @@ export const listarTodas = (req, res) => {
 };
 
 // Obtener una factura con su detalle
-export const obtenerPorId = (req, res) => {
+exports.obtenerPorId = (req, res) => {
   const id = req.params.id;
 
   // Traer cabecera
@@ -19,7 +20,7 @@ export const obtenerPorId = (req, res) => {
     const factura = facturaResult[0];
 
     // Traer detalle
-    db.query('SELECT * FROM detalle_factura WHERE factura_id = ?', [id], (err, detalleResult) => {
+    db.query('SELECT id, factura_id, producto_id, cantidad, precio as precio_unitario, cantidad * precio as total FROM factura_detalle WHERE factura_id = ?', [id], (err, detalleResult) => {
       if (err) return res.status(500).json({ error: err });
 
       factura.items = detalleResult;
@@ -29,7 +30,7 @@ export const obtenerPorId = (req, res) => {
 };
 
 // Crear una factura con detalle
-export const agregar = (req, res) => {
+exports.agregar = (req, res) => {
   const { cliente, numeroFactura, totalARS, totalUSD, items } = req.body;
 
   const sqlCabecera =
@@ -41,13 +42,12 @@ export const agregar = (req, res) => {
 
     if (items && items.length > 0) {
       const sqlDetalle =
-        'INSERT INTO detalle_factura (factura_id, producto, cantidad, precio_unitario, total) VALUES ?';
+        'INSERT INTO factura_detalle (factura_id, producto_id, cantidad, precio) VALUES ?';
       const values = items.map((item) => [
         facturaId,
-        item.producto,
+        item.producto_id,
         item.cantidad,
-        item.precio_unitario,
-        item.total,
+        item.precio,
       ]);
 
       db.query(sqlDetalle, [values], (err) => {
@@ -60,8 +60,9 @@ export const agregar = (req, res) => {
   });
 };
 
+
 // Actualizar una factura (solo cabecera en este ejemplo)
-export const editar = (req, res) => {
+exports.editar = (req, res) => {
   const { cliente, numeroFactura, totalARS, totalUSD } = req.body;
   const sql =
     'UPDATE facturas SET cliente = ?, numero_factura = ?, total_ars = ?, total_usd = ? WHERE id = ?';
@@ -72,7 +73,7 @@ export const editar = (req, res) => {
 };
 
 // Eliminar una factura (y su detalle)
-export const eliminar = (req, res) => {
+exports.eliminar = (req, res) => {
   const id = req.params.id;
 
   db.query('DELETE FROM factura_detalle WHERE factura_id = ?', [id], (err) => {

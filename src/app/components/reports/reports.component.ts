@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import {
-  Chart,
+ Chart,
   ArcElement,
   BarController,
   ChartConfiguration,
@@ -15,7 +15,7 @@ import {
 } from 'chart.js';
 import { FormsModule } from '@angular/forms';
 import { ReportService } from '../../services/report.service';
-import { Router } from '@angular/router';
+//import { Router } from '@angular/router';
 
 // Registrar los elementos de Chart.js necesarios
 Chart.register(ArcElement, Tooltip, Legend, PieController, BarController, CategoryScale, LinearScale, BarElement);
@@ -28,8 +28,7 @@ Chart.register(ArcElement, Tooltip, Legend, PieController, BarController, Catego
   styleUrl: './reports.component.css',
 })
 export class ReportsComponent implements AfterViewInit {
-
-  fromDate: string = '';
+fromDate: string = '';
   toDate: string = '';
   downloading: boolean = false;
   public barChartType: ChartConfiguration<'bar'>['type'] = 'bar';
@@ -145,8 +144,4 @@ export class ReportsComponent implements AfterViewInit {
       },
     });
   }
-  volverHome() {
-    this.router.navigate(['/home']);
-  }
 }
-

@@ -5,7 +5,16 @@
       <input [(ngModel)]="filtro" class="form-control" placeholder="Buscar por nombre o categoría">
    </div>
 
-   <button class="btn btn-success mb-3" (click)="agregarProducto()">Agregar producto</button>
+   <div class="row">
+      <div class="col-md-4 mb-3">
+         <button class="btn btn-success mb-3" (click)="agregarProducto()">Agregar producto</button>
+      </div>
+      <div class="col-md-4 mb-3">
+         <button class="btn btn-primary mb-3" (click)="volverHome()">Volver</button>
+      </div>
+      <div class="col-md-4 mb-3">
+      </div>
+   </div>
 
 
    <table class="table table-bordered table-striped">

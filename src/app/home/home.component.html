@@ -1,0 +1,71 @@
+<div class="home-layout">
+    <h2>Tablero Principal</h2>
+
+    <div class="metrics-grid">
+        <div class="row">
+            <div class="col-md-3">
+                <app-card-resumen
+                    title="Ventas del Día"
+                    value="$ 1,450.50"
+                    icon="paid"
+                    color="success">
+                </app-card-resumen>
+            </div>
+            <div class="col-md-3">
+                <app-card-resumen
+                    title="Clientes Hoy"
+                    value="45"
+                    icon="people"
+                    color="info">
+                </app-card-resumen>
+            </div>
+            <div class="col-md-3">
+                <app-card-resumen
+                    title="Órdenes Pendientes"
+                    value="8"
+                    icon="pending_actions"
+                    color="warning">
+                </app-card-resumen>
+            </div>
+            <div class="col-md-3">
+                <app-card-resumen
+                    title="Más Vendido Hoy"
+                    value="Latte de Vainilla"
+                    icon="coffee"
+                    color="info">
+                </app-card-resumen>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions-section">
+        <h3>Acciones Rápidas</h3>
+
+        <button mat-raised-button color="primary" (click)="nuevaVenta()" class="action-button large-button">
+            <mat-icon>shopping_cart</mat-icon>
+            NUEVA VENTA RÁPIDA
+        </button>
+
+        <button mat-stroked-button color="accent" (click)="abrirReportes()" class="action-button">
+            <mat-icon>bar_chart</mat-icon>
+            ABRIR REPORTES
+        </button>
+
+        <button mat-stroked-button color="basic" (click)="abrirGestionStock()" class="action-button">
+            <mat-icon>inventory_2</mat-icon>
+            GESTIÓN DE STOCK
+        </button>
+
+        <button mat-stroked-button color="basic" (click)="exportarDatos()" class="action-button">
+            <mat-icon>download</mat-icon>
+            EXPORTAR DATOS
+        </button>
+    </div>
+
+    <hr>
+
+    <div class="chat-section">
+        <h3>Comunicación Interna</h3>
+        <app-chat></app-chat>
+    </div>
+</div>

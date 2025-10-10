@@ -1,4 +1,8 @@
-
+<div class="row mb-4" *ngIf="mostrarFactura === false">
+  <div class="col">
+    <h2 class="text-center">Productos Disponibles</h2>
+  </div>
+</div>
 <div class="row">
   <!-- Listado de productos -->
   <div class="col-md-4 mb-3" *ngFor="let producto of productos">
@@ -22,8 +26,36 @@
     </div>
   </div>
 </div>
-
 <div class="row mt-4">
+  <div class="row">
+    <div class="col-3">
+      <span class="">Total del productos en el carrito: </span>
+    </div>
+    <div class="col-1 text-end">
+      <span>{{ carrito.length }} items</span>
+    </div>
+  </div>
+  <div row="row">
+    <div class="col-3 text-center">
+      <span>Tasa de cambio actual: </span>
+    </div>
+    <div class="col-1 text-end">
+      <span>{{ dolar | number:'1.2-2' }} ARS/USD</span>
+    </div>
+  </div>
+  <div class="col-2 text-end">
+    <h5 class="">Total en USD: ${{ getTotalUSD() | number:'1.2-2' }}</h5>
+  </div>
+  <div class="col-2 text-end">
+    <button class="btn btn-danger" (click)="vaciarCarrito()">
+      Vaciar carrito
+    </button>
+    <button class="btn btn-warning ms-2" (click)="verCarrito()">
+      Finalizar compra
+    </button>
+  </div>
+</div>
+<div class="row mt-4" *ngIf="mostrarFactura === true">
   <!-- Carrito y factura -->
   <div class="col-8">
     <div class="card h-100 text-white" style="background: linear-gradient(135deg, #fc466b, #3f5efb); border: none;">
@@ -82,3 +114,4 @@
     <app-chat></app-chat>
   </div>
 </div>
+

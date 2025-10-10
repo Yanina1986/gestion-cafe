@@ -46,4 +46,8 @@ export class ListaProductoComponent {
   agregarProducto() {
     this.router.navigate(['/producto/nuevo']);
   }
+
+  volverHome() {
+    this.router.navigate(['/home']);
+  }
 }

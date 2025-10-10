@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon">
+        <mat-icon>local_cafe</mat-icon>
+    </button>
+    <span class="app-title">Gestión Café</span>
+
+    <nav>
+        <button mat-button routerLink="/home" routerLinkActive="active-link">Home</button>
+        <button mat-button routerLink="/venta" routerLinkActive="active-link">Venta</button>
+        <button mat-button routerLink="/reportes" routerLinkActive="active-link">Reportes</button>
+    </nav>
+    
+    <span class="example-spacer"></span>
+
+    <button mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="content-container">
+    <router-outlet></router-outlet>
+</div>

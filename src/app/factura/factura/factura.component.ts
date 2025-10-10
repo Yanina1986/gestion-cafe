@@ -64,4 +64,6 @@ export class FacturaComponent {
   cancelarFactura() {
     this.cancelar.emit();
   }
-}
+  }
+
+

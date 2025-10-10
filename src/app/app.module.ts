@@ -18,13 +18,13 @@ import { provideAuth, getAuth } from "@angular/fire/auth";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
 import { ReportService } from "./services/report.service";
 import { ReportsComponent } from "./components/reports/reports.component";
+import { MatIcon, MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductoComponent,
     ListaProductoComponent,
-    FiltroProductoPipe,
     ReportsComponent
   ],
   imports: [
@@ -32,8 +32,9 @@ import { ReportsComponent } from "./components/reports/reports.component";
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatCardModule,
     MatSnackBarModule,
+    MatIconModule,
+
     // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

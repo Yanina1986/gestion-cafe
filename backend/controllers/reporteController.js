@@ -1,26 +1,40 @@
-import db from "../db.js";
-import { Parser } from 'json2csv';
+const db = require("../db.js");
+const Parser = require('json2csv').Parser;
 
 
-
-
-export const obtenerVentasPorDia = (req, res) => {
-   const sql = `
-    SELECT DATE(fecha) as dia, SUM(total_ars) as total_ars, SUM(total_usd) as total_usd
-    FROM facturas
-    GROUP BY DATE(fecha)
-    ORDER BY DATE(fecha) DESC
-  `;
-  db.query(sql, (err, results) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json(results);
-  });
+exports.obtenerVentasPorDia = (req, res) => {
+  const { fromDate, toDate } = req.query;
+  //Si mandamos fechas, filtramos por ese rango, si no, traemos todo
+  if (fromDate && toDate) {
+    const sql = `
+      SELECT DATE(fecha) as dia, SUM(total_ars) as total_ars, SUM(total_usd) as total_usd
+      FROM facturas
+      WHERE DATE(fecha) BETWEEN ? AND ?
+      GROUP BY DATE(fecha)
+      ORDER BY DATE(fecha) DESC
+    `;
+    db.query(sql, [fromDate, toDate], (err, results) => {
+      if (err) return res.status(500).json({ error: err });
+      return res.json(results);
+    });
+  } else {
+    const sql = `
+      SELECT DATE(fecha) as dia, SUM(total_ars) as total_ars, SUM(total_usd) as total_usd
+      FROM facturas
+      GROUP BY DATE(fecha)
+      ORDER BY DATE(fecha) DESC
+    `;
+    db.query(sql, (err, results) => {
+      if (err) return res.status(500).json({ error: err });
+      res.json(results);
+    });
+  }
+  return;
 };
 
 
 
-
-export const obtenerProductosMasVendidos = (req, res) => {
+exports.obtenerProductosMasVendidos = (req, res) => {
   const sql = `
     SELECT producto_id, SUM(cantidad) AS total_vendido
     FROM factura_detalle
@@ -41,8 +55,8 @@ export const obtenerProductosMasVendidos = (req, res) => {
 
 
 
-export const exportarFacturasCSV = (req, res) => {
-    const sql = `
+exports.exportarFacturasCSV = (req, res) => {
+  const sql = `
     SELECT f.id, f.cliente, f.numero_factura, f.total_ars, f.total_usd, f.fecha,
            df.producto_id, df.cantidad, df.precio, df.cantidad * df.precio AS total
     FROM facturas f

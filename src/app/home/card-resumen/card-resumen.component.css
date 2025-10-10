@@ -1,0 +1,72 @@
+.metric-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    min-width: 250px;
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.card-icon-container {
+    padding: 15px;
+    border-radius: 50%;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon-container mat-icon {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-value {
+    margin: 5px 0 0 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Clases de Color */
+.success .card-icon-container {
+    background-color: #e8f5e9; /* Light Green */
+}
+.success mat-icon {
+    color: #4caf50; /* Green */
+}
+
+.warning .card-icon-container {
+    background-color: #fff3e0; /* Light Orange */
+}
+.warning mat-icon {
+    color: #ff9800; /* Orange */
+}
+
+.info .card-icon-container {
+    background-color: #e3f2fd; /* Light Blue */
+}
+.info mat-icon {
+    color: #2196f3; /* Blue */
+}

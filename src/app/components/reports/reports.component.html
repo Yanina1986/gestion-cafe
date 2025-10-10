@@ -34,27 +34,33 @@
         >
           {{ downloading ? 'Descargando...' : 'Exportar CSV' }}
         </button>
+        <button class="btn btn-secondary w-100" (click)="volverHome()">
+          Volver al Inicio
+        </button>
       </div>
     </div>
   </div>
 
   <div class="card p-4 mb-4 shadow-sm">
-    <h5 class="mb-3">Ventas por Día</h5>
-    <canvas
-      baseChart
-      [data]="salesChartData"
-      [options]="chartOptions"
-      chartType="bar"
-    ></canvas>
+    <h5 class="mb-3">📅 Ventas por Día</h5>
+        <canvas
+          baseChart
+          #ventasChart
+          [data]="salesChartData"
+          [options]="chartOptions"
+          [type]="barChartType"
+        ></canvas>
+
   </div>
 
   <div class="card p-4 shadow-sm">
-    <h5 class="mb-3">Productos Más Vendidos</h5>
+    <h5 class="mb-3">🥐 Productos Más Vendidos</h5>
     <canvas
       baseChart
+      #topProductosChart
       [data]="productsChartData"
       [options]="chartOptions"
-      chartType="pie"
+      [type]="pieChartType"
     ></canvas>
   </div>
 </div>

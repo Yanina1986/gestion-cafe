@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { ChatService } from '../services/chat.service';
 import { ChatComponent } from '../components/chat/chat.component';
 
+
 @Component({
   selector: 'app-productos-disponibles',
   standalone: true,
@@ -25,7 +26,7 @@ import { ChatComponent } from '../components/chat/chat.component';
   styleUrls: ['./productos-disponibles.component.css']
 })
 export class ProductosDisponiblesComponent implements OnInit {
-  productos: Producto[] = [];
+ productos: Producto[] = [];
   carrito: any[] = [];
   mostrarFactura: boolean = false;
   dolar: number = 1;
@@ -41,34 +42,41 @@ export class ProductosDisponiblesComponent implements OnInit {
   ngOnInit(): void {
     // Trae productos
     this.productoService.obtenerProductos().subscribe((data: Producto[]) => {
-  this.productos = data;
-});
+    this.productos = data;
+  });
 
 
-    // Trae valor del dólar
+      // Trae valor del dólar
     this.bcraService.obtenerDolarOficial().subscribe((res: any) => {
       this.dolar = res.valor ?? 950;
-    });
-  }
+      });
+    }
 
   agregarAlCarrito(producto: Producto) {
-  const existente = this.carrito.find(p => p.id === producto.id);
-  if (existente) {
-    existente.cantidad += 1;
-  } else {
-    this.carrito.push({
-      id: producto.id,
-      nombre: producto.nombre,
-      descripcion: producto.descripcion,
-      precio: producto.precio_ars,
-      categoria: producto.categoria,
-      imagen: producto.image,
-      cantidad: 1
-    });
+    const existente = this.carrito.find(p => p.id === producto.id);
+    if (existente) {
+      existente.cantidad += 1;
+    } else {
+      this.carrito.push({
+        id: producto.id,
+        nombre: producto.nombre,
+        descripcion: producto.descripcion,
+        precio: producto.precio_ars,
+        categoria: producto.categoria,
+        imagen: producto.image,
+        cantidad: 1
+      });
+    }
   }
-}
 
+  verCarrito() {
+    this.mostrarFactura = true;
+  }
 
+  vaciarCarrito() {
+    this.carrito = [];
+    this.mostrarFactura = false;
+  }
 
   quitarDelCarrito(producto: Producto) {
     const index = this.carrito.findIndex(p => p.id === producto.id);
@@ -102,4 +110,5 @@ export class ProductosDisponiblesComponent implements OnInit {
     this.routes.navigate(['/listaProductos']);
   }
 }
+
 

@@ -1,6 +1,5 @@
 import db from "../db.js";
 
-// Obtener todas las facturas
 export const listarTodas = (req, res) => {
   db.query('SELECT * FROM facturas', (err, results) => {
     if (err) return res.status(500).json({ error: err });

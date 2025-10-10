@@ -44,7 +44,7 @@ export class LoginComponent {
         localStorage.setItem('token', res.token);
         localStorage.setItem('user',JSON.stringify(res.usuario));
 
-        this.router.navigate(['/productosdisponibles']);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.error = 'Credenciales inválidas o servidor no disponible.';
@@ -55,6 +55,7 @@ export class LoginComponent {
 
 
 }
+
 
 
 
